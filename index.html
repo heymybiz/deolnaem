@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>덜냄 | 구독 다이어트 계산기 — 넷플릭스·유튜브·티빙 구독료 비교</title>
+    <meta name="description" content="넷플릭스·유튜브 프리미엄·티빙 등 14개 구독 서비스의 공식 요금과 공동구독 최저가를 비교하고, 매달 얼마나 덜 낼 수 있는지 계산해 보세요. 가격 기준일 2026-10-25." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&family=Gowun+Dodum&display=swap"
+    />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      :root {
+        --x-bg: #fff8f0; --x-paper: #fffdf9; --x-tint: #fcefe3; --x-tint-2: #f8e6d8;
+        --x-pink: #ff9eb1; --x-pink-h: #ff8fa3; --x-pink-l: #ffe3ea; --x-pink-m: #ffd1dc; --x-peach: #ffdcc8;
+        --x-rose: #c2405e; --x-rose-d: #b23a57;
+        --x-ink: #5b3a2e; --x-ink-2: #7a5a4c; --x-ink-3: #7c5c4e; --x-line: #f0dfd2; --x-line-2: #e6cdbd;
+        --x-honey: #fff1d6; --x-honey-ink: #7a4a12; --x-mint: #ddf3e8; --x-mint-ink: #2f6b50;
+        --x-shadow: 0 2px 0 rgba(91, 58, 46, 0.05), 0 10px 26px rgba(91, 58, 46, 0.08);
+        --x-shadow-h: 0 4px 0 rgba(91, 58, 46, 0.06), 0 16px 34px rgba(91, 58, 46, 0.13);
+        --x-font: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+        --x-round: "Gowun Dodum", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+        --x-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+        --x-boing: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --x-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M1 4.5Q6.5 0.5 12 4.5T23 4.5' fill='none' stroke='%23FF8FA3' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
+        --x-wave-b: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14' viewBox='0 0 28 14'%3E%3Cpath d='M1 7Q7.5 1 14 7T27 7' fill='none' stroke='%23E6CDBD' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+        --x-spark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c.6 5 2 7 7 9.5-5 2.5-6.4 4.5-7 10.5-.6-6-2-8-7-10.5C10 9 11.4 7 12 2z' fill='%23FFD1DC' stroke='%235B3A2E' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+      html { overflow-x: clip; background: var(--x-bg); }
+      body { background-color: var(--x-bg); background-image: radial-gradient(rgba(91, 58, 46, 0.055) 1px, transparent 1.3px); background-size: 22px 22px; color: var(--x-ink); font-family: var(--x-font); font-size: 16px; line-height: 1.6; word-break: keep-all; overflow-x: clip; }
+      .x-wrap { max-width: 1040px; margin: 0 auto; padding-inline: 20px; }
+
+      /* header */
+      .x-header { position: sticky; top: 0; z-index: 50; background: rgba(255, 248, 240, 0.86); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 2px dashed var(--x-line-2); }
+      .x-header__in { display: flex; align-items: center; justify-content: space-between; height: 62px; gap: 12px; }
+      .x-header__in > * { min-width: 0; }
+      .x-logo { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; text-decoration: none; color: var(--x-rose); font-family: var(--x-round); font-size: 24px; letter-spacing: -0.03em; white-space: nowrap; }
+      .x-logo svg { flex: none; }
+      .x-logo small { font-family: var(--x-font); font-size: 13px; font-weight: 500; color: var(--x-ink-3); letter-spacing: -0.01em; }
+      .x-nav { display: none; gap: 2px; }
+      .x-nav a { text-decoration: none; color: var(--x-ink-2); font-size: 15px; font-weight: 600; padding: 10px 12px; border-radius: 999px; transition: background 0.15s, color 0.15s; }
+      .x-nav a:hover { background: var(--x-pink-l); color: var(--x-ink); }
+      .x-nav a.is-on { color: var(--x-ink); background: var(--x-pink-m); }
+      .x-burger { width: 44px; height: 44px; border: 2px solid var(--x-ink); background: var(--x-paper); border-radius: 16px; display: grid; place-items: center; cursor: pointer; color: var(--x-ink); flex: none; box-shadow: 0 3px 0 var(--x-ink); transition: transform 0.15s var(--x-boing), box-shadow 0.15s; }
+      .x-burger:active { transform: translateY(2px) scale(1.05, 0.92); box-shadow: 0 1px 0 var(--x-ink); }
+      .x-drawer { display: none; border-top: 2px dashed var(--x-line-2); background: var(--x-bg); padding: 8px 20px 16px; }
+      .x-drawer.is-open { display: block; }
+      .x-drawer a { display: flex; align-items: center; min-height: 48px; text-decoration: none; color: var(--x-ink); font-size: 17px; font-weight: 600; border-radius: 16px; padding: 0 14px; }
+      .x-drawer a.is-on { background: var(--x-pink-m); }
+      @media (min-width: 900px) { .x-nav { display: flex; } .x-burger, .x-drawer, .x-drawer.is-open { display: none; } }
+      @media (max-width: 359px) { .x-header .x-logo small { display: none; } }
+
+      /* type */
+      .x-view { padding-block: 28px 64px; outline: none; min-width: 0; padding-inline: max(0px, calc(20px - var(--gutter))); }
+      .x-eyebrow { display: inline-flex; align-items: center; gap: 6px; color: var(--x-rose-d); font-weight: 700; font-size: 14px; margin: 0 0 8px; }
+      .x-eyebrow::before { content: ""; width: 14px; height: 14px; background: var(--x-spark) center/contain no-repeat; flex: none; }
+      .x-h1 { font-family: var(--x-round); font-weight: 400; font-size: clamp(30px, 7vw, 50px); line-height: 1.28; letter-spacing: -0.03em; margin: 0 0 16px; }
+      .x-h2 { font-family: var(--x-round); font-weight: 400; font-size: clamp(23px, 4.4vw, 30px); line-height: 1.36; letter-spacing: -0.025em; margin: 0 0 8px; }
+      .x-h3 { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 6px; line-height: 1.4; }
+      .x-sub { color: var(--x-ink-2); font-size: 17px; margin: 0 0 24px; }
+      .x-muted { color: var(--x-ink-3); font-size: 14px; }
+      .x-p { color: var(--x-ink-2); margin: 0 0 12px; }
+      .x-sec { margin-top: 56px; }
+      .x-sec[id] { scroll-margin-top: 84px; }
+      .x-sec__head { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 20px; }
+      .x-sec__head > div { min-width: 0; }
+      .x-more { color: var(--x-ink-2); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding: 0 4px; flex: none; }
+      .x-more:hover { color: var(--x-rose-d); }
+      .x-doodle { background: var(--x-wave) left bottom / 20px 7px repeat-x; padding-bottom: 6px; }
+      .x-squiggle { height: 14px; max-width: 200px; margin: 52px auto 0; background: var(--x-wave-b) center / 28px 14px repeat-x; }
+      .x-gray { background: var(--x-tint); border-radius: 34px; padding: 28px 20px; }
+      @media (min-width: 720px) { .x-gray { padding: 40px; } }
+      .x-nw { white-space: nowrap; }
+
+      /* buttons: pink mochi that squish */
+      .x-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+      .x-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 22px; border-radius: 999px; font: inherit; font-size: 16px; font-weight: 800; letter-spacing: -0.02em; text-decoration: none; color: var(--x-ink); border: 2px solid var(--x-ink); background: var(--x-paper); cursor: pointer; box-shadow: 0 4px 0 var(--x-ink); transition: transform 0.22s var(--x-boing), box-shadow 0.15s, background 0.15s; -webkit-tap-highlight-color: transparent; }
+      .x-btn:active { transform: translateY(3px) scale(1.04, 0.9); box-shadow: 0 1px 0 var(--x-ink); transition-duration: 0.08s; }
+      .x-btn--pri { background: var(--x-pink); }
+      .x-btn--pri:hover { background: var(--x-pink-h); }
+      .x-btn--sec { background: var(--x-paper); }
+      .x-btn--sec:hover { background: var(--x-pink-l); }
+      .x-btn--ghost { background: var(--x-tint); border-color: transparent; box-shadow: none; color: var(--x-ink-2); }
+      .x-btn--sm { min-height: 44px; padding: 0 16px; font-size: 14px; box-shadow: 0 3px 0 var(--x-ink); }
+      .x-btn--cta, .x-btn--wide { width: 100%; min-height: 56px; padding-block: 10px; font-size: 17px; line-height: 1.35; text-align: center; }
+      .x-btn--wide { font-size: 16px; }
+
+      /* cards */
+      .x-card { background: var(--x-paper); border-radius: 26px; box-shadow: var(--x-shadow); padding: 22px; border: 1.5px solid var(--x-line); }
+      a.x-card { display: block; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.25s var(--x-boing); }
+      a.x-card:hover { box-shadow: var(--x-shadow-h); transform: translateY(-3px); }
+      .x-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+      .x-grid--3 { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+      .x-badge { display: inline-flex; align-items: center; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--x-pink-l); color: var(--x-rose-d); white-space: nowrap; }
+      .x-badge--red { background: #ffe1e1; color: #a3263a; }
+      .x-badge--gray { background: var(--x-tint); color: var(--x-ink-2); }
+      .x-badge--green { background: var(--x-mint); color: var(--x-mint-ink); }
+
+      /* service logo */
+      .x-ini { flex: none; width: 44px; height: 44px; border-radius: 16px; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 15px; letter-spacing: -0.04em; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.14); }
+      .x-ini--lg { width: 64px; height: 64px; font-size: 22px; border-radius: 22px; }
+      .x-svc { display: flex; flex-direction: column; gap: 14px; }
+      .x-svc__top { display: flex; align-items: center; justify-content: space-between; }
+      .x-strike { color: var(--x-ink-3); text-decoration: line-through; font-size: 14px; }
+      .x-price { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+      .x-price small { font-size: 14px; font-weight: 600; color: var(--x-ink-2); }
+      .x-basis { display: block; font-size: 13px; color: var(--x-ink-3); margin-top: 2px; }
+
+      /* ---------- 덜냄이 마스코트 ---------- */
+      .x-mas { display: block; width: 100%; max-width: 100%; height: auto; -webkit-user-drag: none; user-select: none; pointer-events: none; }
+      .x-breathe { animation: x-breathe 3.4s ease-in-out infinite; transform-origin: 50% 100%; }
+      @keyframes x-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.035, 0.955); } }
+      .x-squish { animation: x-squish 0.55s var(--x-boing); transform-origin: 50% 100%; }
+      @keyframes x-squish { 0% { transform: scale(1, 1); } 30% { transform: scale(1.18, 0.78); } 60% { transform: scale(0.94, 1.08); } 100% { transform: scale(1, 1); } }
+      .x-mas-pop { animation: x-mas-pop 0.5s var(--x-boing); }
+      @keyframes x-mas-pop { from { opacity: 0; transform: translateY(14px) scale(0.86); } to { opacity: 1; transform: none; } }
+
+      /* hero */
+      .x-hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: center; padding-top: 8px; }
+      .x-hero > * { min-width: 0; }
+      @media (min-width: 900px) { .x-hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 44px; padding-top: 24px; } }
+      .x-hero__micro { margin: 14px 0 0; font-size: 13px; color: var(--x-ink-3); }
+      .x-hero__micro a { color: var(--x-rose-d); font-weight: 700; display: inline-flex; align-items: center; min-height: 44px; }
+      .x-hero .x-btn--cta { max-width: 380px; }
+      .x-receipt dt small { font-size: 12px; color: var(--x-rose-d); font-weight: 600; }
+      .x-stage { position: relative; display: grid; justify-items: center; gap: 10px; padding: 10px 0 4px; }
+      .x-stage > * { max-width: 100%; }
+      .x-bubble { position: relative; max-width: 300px; margin: 0 auto; background: var(--x-paper); border: 2.5px solid var(--x-ink); border-radius: 26px 26px 26px 8px; padding: 14px 18px; font-family: var(--x-round); font-size: 16px; line-height: 1.5; color: var(--x-ink); box-shadow: 0 4px 0 rgba(91, 58, 46, 0.12); text-align: center; }
+      .x-bubble::after { content: ""; position: absolute; left: 26px; bottom: -13px; width: 16px; height: 14px; background: var(--x-paper); border-left: 2.5px solid var(--x-ink); border-bottom: 2.5px solid var(--x-ink); border-radius: 0 0 0 10px; transform: skewX(-18deg); }
+      .x-bubble.is-new { animation: x-mas-pop 0.4s var(--x-boing); }
+      .x-tapme { width: 100%; max-width: 320px; border: 0; background: none; padding: 0; cursor: pointer; display: block; border-radius: 28px; -webkit-tap-highlight-color: transparent; }
+      .x-tapme img { pointer-events: none; }
+      .x-tapme figcaption, .x-hint { font-size: 13px; color: var(--x-ink-3); text-align: center; margin: 2px 0 0; }
+      .x-floor { width: min(290px, 78%); height: 16px; margin: -8px auto 0; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, rgba(91, 58, 46, 0.14), rgba(91, 58, 46, 0) 70%); }
+
+      /* hook stat card */
+      .x-stat { position: relative; background: var(--x-pink); color: var(--x-ink); border: 2.5px solid var(--x-ink); border-radius: 32px; padding: 24px 22px; box-shadow: 0 6px 0 var(--x-ink), 0 18px 34px rgba(91, 58, 46, 0.16); overflow: hidden; }
+      .x-stat::after { content: ""; position: absolute; right: -14px; top: -14px; width: 86px; height: 86px; background: var(--x-spark) center/contain no-repeat; opacity: 0.5; }
+      .x-stat__lab { font-size: 15px; margin: 0 0 4px; font-weight: 600; }
+      .x-stat__lab b { font-weight: 800; }
+      .x-stat__new { font-family: var(--x-round); font-size: clamp(28px, 8.4vw, 48px); letter-spacing: -0.03em; line-height: 1.15; margin: 0; overflow-wrap: anywhere; }
+      .x-stat__foot { margin: 18px 0 0; padding-top: 14px; border-top: 2px dashed rgba(91, 58, 46, 0.35); font-size: 15px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+      .x-stat__foot b, .x-stat__foot span { white-space: nowrap; }
+      .x-stat__foot b { font-size: 18px; }
+      .x-stat__chick { display: inline-flex; margin: 10px 0 0; background: var(--x-paper); border: 2px solid var(--x-ink); font-weight: 700; font-size: 15px; border-radius: 999px; padding: 5px 12px; }
+      .x-storycard { max-width: 400px; margin-inline: auto; }
+      .x-storycard .x-stat { background: linear-gradient(170deg, #ffdfe7 0%, #ffbccb 52%, #ffd9c4 100%); padding: 14px 20px 22px; }
+      .x-story__bars { display: flex; gap: 4px; margin: 0 0 10px; }
+      .x-story__bars i { flex: 1; height: 4px; border-radius: 4px; background: rgba(91, 58, 46, 0.2); }
+      .x-story__bars i.is-on { background: var(--x-ink); }
+      .x-story__top { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 13px; font-weight: 800; }
+      .x-story__top span { width: 30px; height: 30px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--x-paper); border: 2px solid var(--x-ink); font-family: var(--x-round); font-weight: 400; font-size: 14px; }
+      .x-story__top small { font-weight: 600; color: var(--x-ink-2); font-size: 12px; }
+      .x-story__who { font-family: var(--x-round); font-size: 19px; margin: 0; }
+      .x-story__mas { display: grid; place-items: center; margin: 8px auto 4px; width: 170px; max-width: 100%; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 253, 249, 0.85) 0 55%, rgba(255, 253, 249, 0) 70%); }
+      .x-story__mas img { width: 150px; height: auto; }
+      .x-story__mas--melt img { width: 168px; }
+      .x-share { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 12px; margin-top: 14px; }
+      .x-share p { margin: 0; font-size: 13px; color: var(--x-ink-3); min-height: 20px; }
+
+      /* popular shelf: swipe row */
+      .x-shelf { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(208px, 70%); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 4px 18px; margin: 0 -4px; scrollbar-width: none; overscroll-behavior-x: contain; }
+      .x-shelf::-webkit-scrollbar { display: none; }
+      .x-shelf > * { scroll-snap-align: start; min-width: 0; }
+      .x-shelf.is-nav { scroll-snap-type: none; }
+      @media (min-width: 720px) { .x-shelf { grid-auto-columns: minmax(220px, calc((100% - 42px) / 4)); } }
+      .x-car__ctl { display: flex; justify-content: center; gap: 10px; margin-top: 4px; }
+      .x-car__ctl button { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--x-ink); background: var(--x-paper); color: var(--x-ink); font: inherit; font-size: 22px; line-height: 1; cursor: pointer; box-shadow: 0 3px 0 var(--x-ink); transition: transform 0.2s var(--x-boing); }
+      .x-car__ctl button:active { transform: translateY(2px) scale(1.06, 0.9); box-shadow: 0 1px 0 var(--x-ink); }
+
+      /* platform flip cards */
+      .x-flip { perspective: 1200px; }
+      .x-flip__in { display: grid; height: 100%; transform-style: preserve-3d; transition: transform 0.6s var(--x-boing); }
+      .x-flip__in > * { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+      .x-flip__back { transform: rotateY(180deg); }
+      .x-flip.is-flipped .x-flip__in { transform: rotateY(180deg); }
+      .x-flip__back.x-plat { justify-content: center; gap: 12px; background: var(--x-pink-l); }
+      .x-flip__back.x-plat .x-tlinks { margin-top: 0; }
+
+      /* coin pile next to the mascot */
+      .x-stack__pile { position: relative; width: 56px; flex: none; }
+      .x-c { position: absolute; left: 0; width: 56px; height: 20px; border-radius: 50%; background: radial-gradient(ellipse at 40% 35%, #ffe9a3, #f5c04a 70%); border: 1.5px solid var(--x-ink); box-shadow: 0 3px 0 #c9902a; }
+      .x-c.is-new { animation: x-drop 0.45s var(--x-boing) both; }
+      @keyframes x-drop { from { opacity: 0; transform: translateY(-36px); } to { opacity: 1; transform: none; } }
+
+      /* leaking money / receipt */
+      .x-leak { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: center; }
+      @media (min-width: 760px) { .x-leak { grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 28px; } }
+      .x-leak__mas { max-width: 220px; margin: 0 auto; }
+      .x-receipt { position: relative; max-width: 420px; width: 100%; margin: 10px auto; background: var(--x-paper); padding: 22px 20px 24px; color: var(--x-ink); transform: rotate(-1deg); filter: drop-shadow(0 10px 18px rgba(91, 58, 46, 0.12)); }
+      .x-receipt::before, .x-receipt::after { content: ""; position: absolute; left: 0; right: 0; height: 10px; background: linear-gradient(-45deg, var(--x-paper) 5px, transparent 0) 0 0 / 10px 10px repeat-x, linear-gradient(45deg, var(--x-paper) 5px, transparent 0) 0 0 / 10px 10px repeat-x; }
+      .x-receipt::before { top: -10px; transform: scaleY(-1); }
+      .x-receipt::after { bottom: -10px; }
+      .x-stamp { display: block; width: fit-content; max-width: 100%; margin: 16px auto 0; transform: rotate(-5deg); border: 2.5px solid var(--x-rose); color: var(--x-rose); border-radius: 14px; padding: 2px 8px; font-family: var(--x-round); font-size: 14px; background: rgba(255, 253, 249, 0.85); }
+      .x-receipt h3 { font-family: var(--x-round); font-weight: 400; font-size: 19px; text-align: center; margin: 0 0 4px; letter-spacing: 0.04em; }
+      .x-receipt .x-receipt__sub { text-align: center; font-size: 12px; color: var(--x-ink-3); margin: 0 0 14px; letter-spacing: 0.06em; }
+      .x-receipt dl { margin: 0; border-top: 1.5px dashed var(--x-line-2); border-bottom: 1.5px dashed var(--x-line-2); padding: 8px 0; display: grid; gap: 2px; }
+      .x-receipt dl > div { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; font-family: var(--x-font); }
+      .x-receipt dt { margin: 0; color: var(--x-ink-2); min-width: 0; }
+      .x-receipt dd { margin: 0; font-weight: 700; white-space: nowrap; }
+      .x-receipt__total { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 12px; font-size: 16px; font-weight: 800; }
+      .x-receipt__total b { font-size: 24px; color: var(--x-rose); letter-spacing: -0.02em; }
+      .x-receipt__foot { margin: 12px 0 0; font-size: 12px; color: var(--x-ink-3); text-align: center; letter-spacing: 0.04em; }
+
+      /* steps */
+      .x-steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+      .x-steps > * { min-width: 0; }
+      @media (min-width: 720px) { .x-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .x-step__n { width: 34px; height: 34px; border-radius: 50%; background: var(--x-pink-m); border: 2px solid var(--x-ink); color: var(--x-ink); display: grid; place-items: center; font-weight: 800; font-size: 15px; margin-bottom: 14px; }
+
+      /* chips */
+      .x-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 2px 0 8px; max-width: 100%; min-width: 0; }
+      .x-chip { flex: none; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid var(--x-line-2); background: var(--x-paper); color: var(--x-ink-2); font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: transform 0.2s var(--x-boing), background 0.15s; -webkit-tap-highlight-color: transparent; }
+      .x-chip:active { transform: scale(1.06, 0.9); }
+      .x-chip.is-on { background: var(--x-pink); border-color: var(--x-ink); color: var(--x-ink); }
+      .x-picks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+      .x-pick { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; }
+
+      /* list rows */
+      .x-list { background: var(--x-paper); border-radius: 26px; box-shadow: var(--x-shadow); border: 1.5px solid var(--x-line); overflow: hidden; }
+      .x-row { display: flex; align-items: center; gap: 14px; padding: 14px 18px; min-height: 72px; text-decoration: none; color: inherit; cursor: pointer; transition: background 0.12s; }
+      .x-row + .x-row { border-top: 1.5px dashed var(--x-line); }
+      .x-row:hover { background: var(--x-tint); }
+      .x-row__body { flex: 1; min-width: 0; }
+      .x-row__name { font-weight: 800; font-size: 16px; letter-spacing: -0.02em; word-break: keep-all; overflow-wrap: break-word; }
+      .x-row__meta { font-size: 14px; color: var(--x-ink-3); overflow-wrap: anywhere; }
+      .x-row__end { text-align: right; flex: none; }
+      .x-chev { color: var(--x-line-2); flex: none; }
+      .x-srow + .x-srow { border-top: 1.5px dashed var(--x-line); }
+      .x-plink { display: inline-flex; align-items: center; min-height: 44px; margin: -14px 0 2px 76px; padding: 0 8px 0 0; font-size: 14px; font-weight: 800; color: var(--x-rose-d); text-decoration: none; }
+      .x-plink:hover { text-decoration: underline; }
+      .x-plink.x-plink--inline { margin: 12px 0 0; }
+
+      /* toggle */
+      .x-switch { position: relative; width: 54px; height: 32px; flex: none; }
+      .x-switch input { position: absolute; inset: -6px; width: calc(100% + 12px); height: calc(100% + 12px); opacity: 0; margin: 0; cursor: pointer; z-index: 1; }
+      .x-switch span { position: absolute; inset: 0; border-radius: 999px; background: var(--x-tint-2); border: 2px solid var(--x-ink); transition: background 0.2s; }
+      .x-switch span::after { content: ""; position: absolute; top: 2px; left: 2px; width: 24px; height: 24px; border-radius: 50%; background: var(--x-paper); border: 2px solid var(--x-ink); transition: transform 0.25s var(--x-boing); }
+      .x-switch input:checked + span { background: var(--x-pink); }
+      .x-switch input:checked + span::after { transform: translateX(22px); }
+      .x-switch input:focus-visible + span { outline: 2px solid var(--x-rose); outline-offset: 3px; }
+
+      /* calculator */
+      .x-calc { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+      .x-calc > * { min-width: 0; }
+      .x-sheet { position: relative; z-index: 20; background: var(--x-paper); border-radius: 30px; border: 2px solid var(--x-ink); box-shadow: 0 6px 0 rgba(91, 58, 46, 0.12), var(--x-shadow-h); padding: 22px 20px; scroll-margin-top: 84px; }
+      @media (min-width: 900px) { .x-calc { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; } .x-sheet { position: sticky; top: 84px; } }
+      .x-hook__lab { margin: 0; font-size: 15px; font-weight: 700; color: var(--x-ink-2); }
+      .x-hook__fig { font-family: var(--x-round); font-size: clamp(30px, 9vw, 46px); color: var(--x-rose); letter-spacing: -0.03em; line-height: 1.2; overflow-wrap: anywhere; }
+      .x-hook__tail { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.03em; }
+      .x-hook__cmp { margin: 8px 0 0; display: inline-flex; align-items: center; gap: 6px; background: var(--x-honey); color: var(--x-honey-ink); font-size: 14px; font-weight: 700; border-radius: 999px; padding: 6px 12px; }
+      .x-disc { margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: var(--x-ink-3); }
+      .x-sheet__rows { margin: 14px 0 0; padding-top: 12px; border-top: 2px dashed var(--x-line); }
+      .x-sheet__row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 15px; color: var(--x-ink-2); padding: 3px 0; }
+      .x-sheet__row b { color: var(--x-ink); font-size: 16px; white-space: nowrap; }
+      .x-sheet .x-note { margin-top: 12px; }
+      .x-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 4px 0 12px; flex-wrap: nowrap; min-width: 0; }
+      .x-toolbar > span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; color: var(--x-ink-2); }
+      .x-toolbar .x-btn, .x-toolbar .x-tlink { flex: none; }
+      /* mascot mood box in the sheet */
+      .x-mood { margin: 16px 0 0; padding: 14px 14px 12px; border-radius: 24px; background: var(--x-pink-l); }
+      .x-mood__scene { display: flex; align-items: flex-end; justify-content: center; gap: 12px; min-height: 90px; }
+      .x-mood__img { flex: 0 1 auto; min-width: 0; height: auto; }
+      .x-mood__img--melt { width: 170px; }
+      .x-mood__img--hug { width: 150px; }
+      .x-mood__img--sit { width: 118px; }
+      .x-mood__say { margin: 10px 0 0; text-align: center; font-family: var(--x-round); font-size: 16px; line-height: 1.5; color: var(--x-ink); }
+      .x-mood__say small { display: block; font-family: var(--x-font); font-size: 12px; color: var(--x-ink-3); margin-top: 2px; }
+      .x-mood__say small:empty { display: none; }
+      .x-mhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 0 16px; flex-wrap: wrap; }
+      .x-mhead > div { flex: 1 1 260px; min-width: 0; }
+      .x-mhead__fig { flex: none; width: 150px; margin: 0 0 16px auto; }
+      .x-mhead__fig figcaption { font-family: var(--x-round); font-size: 13px; color: var(--x-ink-2); text-align: center; margin-top: 2px; }
+      @media (max-width: 899px) { .x-hero .x-stage { order: -1; } .x-tapme { max-width: 250px; } }
+
+      /* notes */
+      .x-note { background: var(--x-tint); border-radius: 18px; padding: 12px 14px; font-size: 14px; color: var(--x-ink-2); display: flex; gap: 8px; align-items: flex-start; }
+      .x-note svg { flex: none; margin-top: 2px; color: var(--x-ink-3); }
+      .x-note--warn { background: var(--x-honey); color: var(--x-honey-ink); }
+      .x-note--warn svg { color: #b57512; }
+
+      /* search */
+      .x-search { position: relative; margin-bottom: 16px; }
+      .x-search input { width: 100%; height: 54px; border-radius: 999px; border: 2px solid var(--x-line-2); background: var(--x-paper); padding: 0 18px 0 46px; font: inherit; font-size: 16px; color: var(--x-ink); }
+      .x-search input::placeholder { color: var(--x-ink-3); }
+      .x-search input:focus { outline: 2px solid var(--x-rose); border-color: var(--x-ink); }
+      .x-search svg { position: absolute; left: 18px; top: 17px; color: var(--x-ink-3); }
+
+      /* tables */
+      .x-tbl-wrap { overflow-x: auto; border-radius: 26px; border: 1.5px solid var(--x-line); box-shadow: var(--x-shadow); background: var(--x-paper); }
+      .x-tbl { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 100%; }
+      .x-tbl th, .x-tbl td { padding: 14px 16px; text-align: left; border-bottom: 1.5px dashed var(--x-line); vertical-align: top; }
+      .x-tbl thead th { background: var(--x-tint); color: var(--x-ink-2); font-size: 13px; font-weight: 700; white-space: nowrap; }
+      .x-tbl tbody th { font-weight: 700; color: var(--x-ink); white-space: nowrap; }
+      .x-tbl tr:last-child th, .x-tbl tr:last-child td { border-bottom: 0; }
+      .x-tbl .x-num { font-weight: 800; white-space: nowrap; text-align: right; }
+      .x-tbl .x-unk { color: var(--x-ink-3); }
+      .x-tbl--wide { min-width: 720px; }
+      @media (max-width: 719px) {
+        .x-tbl tbody th { white-space: normal; }
+        .x-tbl--wide { min-width: 0; }
+        .x-tbl--wide thead { display: none; }
+        .x-tbl--wide, .x-tbl--wide tbody, .x-tbl--wide tr, .x-tbl--wide tbody th, .x-tbl--wide td { display: block; width: auto; }
+        .x-tbl--wide tr { padding: 6px 0 10px; border-bottom: 1.5px dashed var(--x-line); }
+        .x-tbl--wide tr:last-child { border-bottom: 0; }
+        .x-tbl--wide tbody th { padding: 12px 16px 4px; border: 0; white-space: normal; }
+        .x-tbl--wide td { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 5px 16px; border: 0; text-align: right; }
+        .x-tbl--wide td::before { content: attr(data-label); flex: none; text-align: left; font-size: 13px; font-weight: 700; color: var(--x-ink-3); }
+      }
+
+      /* detail */
+      .x-dhead { display: flex; gap: 16px; align-items: center; margin-bottom: 24px; }
+      .x-dhead > div { min-width: 0; }
+      .x-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+      .x-two > * { min-width: 0; }
+      @media (min-width: 720px) { .x-two { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+      .x-big { font-family: var(--x-round); font-size: 32px; letter-spacing: -0.03em; line-height: 1.2; }
+      .x-big--pink { color: var(--x-rose); }
+      .x-ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+      .x-ul li { position: relative; padding-left: 24px; color: var(--x-ink-2); }
+      .x-ul li::before { content: ""; position: absolute; left: 3px; top: 8px; width: 11px; height: 11px; background: var(--x-spark) center/contain no-repeat; }
+      .x-back { display: inline-flex; align-items: center; gap: 4px; color: var(--x-ink-3); text-decoration: none; font-weight: 700; font-size: 15px; min-height: 44px; margin-bottom: 8px; }
+      .x-back:hover { color: var(--x-ink); }
+      .x-ol { margin: 0 0 4px; padding-left: 22px; color: var(--x-ink-2); display: grid; gap: 8px; }
+      .x-mini { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+      @media (min-width: 720px) { .x-mini { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .x-mini li { display: flex; align-items: center; gap: 12px; background: var(--x-tint); border-radius: 18px; padding: 12px 14px; font-size: 15px; font-weight: 700; color: var(--x-ink); min-width: 0; }
+      .x-mini b { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--x-pink); border: 2px solid var(--x-ink); display: grid; place-items: center; font-size: 13px; }
+
+      /* CTA */
+      .x-cta { margin-top: 24px; border-radius: 30px; background: var(--x-pink-l); border: 1.5px solid var(--x-line); padding: 22px 20px; }
+      .x-cta .x-h3 { margin: 0 0 4px; }
+      .x-cta .x-p { margin: 0 0 14px; }
+      .x-cta .x-btns .x-btn { flex: 1 1 220px; }
+      .x-cta--dark { background: var(--x-ink); border-color: var(--x-ink); color: var(--x-bg); }
+      .x-cta--dark .x-p, .x-cta--dark .x-obj dd { color: #f4c9d3; }
+      .x-cta--dark .x-disc { color: #e2bda9; }
+      .x-cta--dark .x-obj dt { color: var(--x-bg); }
+      .x-cta--dark .x-tlink, .x-cta--dark .x-obj dd a { color: var(--x-pink-m); }
+      .x-cta--pick { background: var(--x-paper); border: 2.5px solid var(--x-ink); box-shadow: 0 6px 0 rgba(91, 58, 46, 0.1); }
+
+      /* funnel text links, objections, FAQ */
+      .x-tlink { display: inline-flex; align-items: center; min-height: 44px; padding: 0; border: 0; background: none; font: inherit; font-size: 15px; font-weight: 800; color: var(--x-rose-d); text-decoration: none; cursor: pointer; text-align: left; max-width: 100%; }
+      .x-tlink:hover { text-decoration: underline; }
+      .x-tlinks { display: flex; flex-wrap: wrap; gap: 0 18px; margin-top: 8px; }
+      .x-obj { margin: 12px 0 0; display: grid; gap: 8px; font-size: 14px; line-height: 1.5; }
+      .x-obj > div { display: flex; flex-wrap: wrap; gap: 0 8px; min-width: 0; }
+      .x-obj dt { font-weight: 800; color: var(--x-ink); flex: none; }
+      .x-obj dd { margin: 0; color: var(--x-ink-2); min-width: 0; overflow-wrap: anywhere; }
+      .x-obj dd a { color: var(--x-rose-d); font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; margin-block: -12px; white-space: nowrap; }
+      .x-obj dd a:hover { text-decoration: underline; }
+      .x-faq { background: var(--x-paper); border-radius: 26px; box-shadow: var(--x-shadow); border: 1.5px solid var(--x-line); overflow: hidden; margin-top: 16px; }
+      .x-faq details + details { border-top: 1.5px dashed var(--x-line); }
+      .x-faq summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 12px 18px; font-weight: 800; font-size: 16px; letter-spacing: -0.02em; cursor: pointer; }
+      .x-faq summary::-webkit-details-marker { display: none; }
+      .x-faq summary::after { content: ""; flex: none; width: 9px; height: 9px; border-right: 2.4px solid var(--x-pink-h); border-bottom: 2.4px solid var(--x-pink-h); transform: rotate(45deg) translate(-2px, -2px); transition: transform 0.2s; }
+      .x-faq details[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+      .x-faq summary:hover { background: var(--x-tint); }
+      .x-faq summary:focus-visible { outline: 2px solid var(--x-rose); outline-offset: -2px; }
+      .x-faq details p { margin: 0; padding: 0 18px 18px; color: var(--x-ink-2); font-size: 15px; }
+      .x-faq__mas { display: flex; align-items: flex-end; gap: 12px; margin-top: 14px; }
+      .x-faq__mas img { flex: none; width: 112px; height: auto; }
+      .x-faq__mas p { margin: 0 0 8px; font-family: var(--x-round); font-size: 15px; color: var(--x-ink-2); min-width: 0; }
+
+      /* checklist tiles */
+      .x-prog { margin: 0 0 20px; }
+      .x-prog__top { display: flex; justify-content: space-between; font-weight: 800; margin-bottom: 8px; }
+      .x-prog__top b { color: var(--x-rose); }
+      .x-prog__bar { height: 14px; border-radius: 999px; background: var(--x-tint-2); border: 2px solid var(--x-ink); overflow: hidden; }
+      .x-prog__bar i { display: block; height: 100%; background: var(--x-pink); transition: width 0.4s var(--x-boing); }
+      .x-check__t { font-weight: 800; font-size: 16px; letter-spacing: -0.02em; display: block; }
+      .x-check__d { font-size: 14px; color: var(--x-ink-3); display: block; margin-top: 2px; }
+      .x-callout { border-radius: 26px; background: var(--x-pink-l); border: 1.5px solid var(--x-line); padding: 22px; margin-top: 20px; }
+      .x-callout b { color: var(--x-ink); }
+      .x-callout p { margin: 0; color: var(--x-ink-2); }
+      .x-callout .x-num-row { display: flex; gap: 24px; margin: 12px 0; flex-wrap: wrap; }
+      .x-callout .x-num-row div span { display: block; font-size: 14px; color: var(--x-ink-2); }
+      .x-callout .x-num-row div strong { font-family: var(--x-round); font-weight: 400; font-size: 30px; color: var(--x-rose-d); letter-spacing: -0.02em; }
+
+      /* article */
+      .x-article { max-width: 680px; }
+      .x-article h2 { font-family: var(--x-round); font-weight: 400; font-size: 22px; letter-spacing: -0.02em; margin: 36px 0 10px; }
+      .x-article p, .x-article li { color: var(--x-ink-2); font-size: 17px; line-height: 1.8; }
+      .x-article p { margin: 0 0 14px; }
+      .x-article ul, .x-article ol { padding-left: 22px; margin: 0 0 14px; }
+      .x-article .x-meta { color: var(--x-ink-3); font-size: 14px; margin-bottom: 28px; }
+      .x-hl { background: var(--x-tint); border-radius: 22px; padding: 18px 20px; margin: 16px 0; }
+      .x-hl p { margin: 0; }
+      .x-guide-tag { font-size: 13px; font-weight: 800; color: var(--x-rose-d); margin-bottom: 10px; display: block; }
+
+      /* platforms */
+      .x-plat { display: flex; flex-direction: column; gap: 10px; }
+      .x-plat__top { display: flex; align-items: center; gap: 12px; }
+      .x-plat__top > div { min-width: 0; }
+      .x-plat--no { background: var(--x-tint); }
+      .x-plat .x-btns, .x-plat .x-tlinks { margin-top: auto; padding-top: 4px; }
+      .x-plat--pick { border: 2.5px solid var(--x-ink); box-shadow: 0 6px 0 rgba(91, 58, 46, 0.1); }
+      .x-plat .x-disc { margin: 0; }
+      .x-safe { margin-bottom: 24px; }
+      .x-safe .x-two > div { background: var(--x-tint); border-radius: 22px; padding: 16px; }
+      .x-safe .x-two > div > p { margin: 0 0 10px; font-weight: 800; font-size: 16px; }
+      .x-safe .x-ul li { font-size: 15px; }
+      .x-safe .x-src { display: block; font-size: 13px; color: var(--x-ink-3); }
+      .x-safe__no .x-ul li::before { background: none; border-radius: 50%; background-color: var(--x-line-2); left: 5px; top: 9px; width: 8px; height: 8px; }
+      .x-safe-note { margin-top: 14px; }
+      .x-fit { margin-top: 12px; box-shadow: none; background: var(--x-pink-l); border-color: transparent; }
+      .x-fit .x-h3 { margin: 0 0 8px; }
+      .x-coop .x-p { margin: 0 0 14px; }
+      .x-coop__ways { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+      @media (min-width: 560px) { .x-coop__ways { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+      .x-coop__ways > div { background: var(--x-tint); border-radius: 18px; padding: 12px 14px; border: 2px solid transparent; min-width: 0; }
+      .x-coop__ways > div.is-on { border-color: var(--x-pink-h); background: var(--x-paper); }
+      .x-coop__ways b { display: block; font-size: 15px; letter-spacing: -0.02em; }
+      .x-coop__ways span { display: block; font-size: 14px; color: var(--x-ink-2); margin-top: 2px; }
+      .x-coop .x-note, .x-coop .x-muted { margin: 10px 0 0; }
+      .x-start .x-card { box-shadow: none; }
+
+      /* sticky bottom bar with peeking mascot */
+      .x-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(255, 253, 249, 0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 -8px 24px rgba(91, 58, 46, 0.14); border-top: 2.5px solid var(--x-ink); }
+      .x-bar[hidden] { display: none; }
+      /* the head peeks up from the bar's bottom edge, inside the bar, so it never covers page content */
+      .x-bar__peek { flex: none; align-self: flex-end; width: 58px; height: 50px; margin: 0 -4px calc(-10px - env(safe-area-inset-bottom)) -4px; overflow: hidden; pointer-events: none; }
+      .x-bar__peek img { width: 96px; max-width: none; margin: 6px 0 0 -19px; animation: x-peek 3.6s ease-in-out infinite; }
+      .x-bar__txt { flex: 1 1 auto; }
+      @keyframes x-peek { 0%, 100% { transform: translateY(2px); } 50% { transform: translateY(-4px) rotate(-3deg); } }
+      .x-bar__txt { min-width: 0; }
+      .x-bar__txt span { display: block; font-size: 12px; color: var(--x-ink-3); line-height: 1.4; }
+      .x-bar__txt b { display: block; font-family: var(--x-round); font-size: 19px; letter-spacing: -0.02em; color: var(--x-rose); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .x-bar .x-btn { flex: none; min-height: 48px; padding: 0 18px; }
+      /* room for the bar plus the head peeking above it, so nothing at the page end sits under either */
+      body.has-bar { padding-bottom: 96px; }
+      @media (min-width: 900px) { .x-bar, .x-bar[hidden] { display: none; } body.has-bar { padding-bottom: 0; } }
+
+      /* empty / 404 */
+      .x-empty { padding: 32px 20px; text-align: center; color: var(--x-ink-3); display: grid; justify-items: center; gap: 6px; }
+      .x-empty img { width: 150px; opacity: 0.95; }
+      .x-empty h1 { font-family: var(--x-round); font-weight: 400; }
+      .x-404 { padding-block: 24px 48px; }
+      .x-404 img { width: 220px; }
+      .x-404 .x-btn { margin-top: 10px; }
+      body.is-404 .x-foot__sleep { display: none; }
+
+      /* footer */
+      .x-foot { background: var(--x-tint); border-top: 2px dashed var(--x-line-2); padding: 0 0 48px; margin-top: 36px; color: var(--x-ink-2); font-size: 14px; }
+      .x-foot__sleep { display: flex; align-items: flex-end; gap: 14px; padding-top: 14px; margin-bottom: 10px; }
+      .x-foot__sleep img { flex: none; width: 132px; height: auto; margin-bottom: -2px; }
+      .x-foot__sleep p { margin: 0 0 16px; font-family: var(--x-round); font-size: 18px; color: var(--x-ink); min-width: 0; }
+      .x-foot__sleep small { display: block; font-family: var(--x-font); font-size: 13px; color: var(--x-ink-3); margin-top: 2px; }
+      .x-foot .x-logo { color: var(--x-ink); }
+      .x-foot__links { display: flex; flex-wrap: wrap; gap: 4px; margin: 12px 0; }
+      .x-foot__links a { color: var(--x-ink-2); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: 0 10px; margin-left: -10px; margin-right: 6px; border-radius: 999px; }
+      .x-foot__links a:hover { color: var(--x-ink); background: var(--x-pink-l); }
+      .x-foot p { margin: 4px 0; }
+      .x-op p { margin: 2px 0; }
+      .x-op-v { font-weight: 700; color: var(--x-ink); overflow-wrap: anywhere; }
+      .x-op-v a, .x-op a { color: var(--x-rose-d); font-weight: 700; display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; overflow-wrap: anywhere; }
+      #x-stash, [hidden] { display: none !important; }
+      .x-stat::after { z-index: 0; }
+      .x-stat > * { position: relative; z-index: 1; }
+
+      a:focus-visible, button:focus-visible, summary:focus-visible, .x-shelf:focus-visible { outline: 2px solid var(--x-rose); outline-offset: 2px; }
+
+      /* motion: enter, reveal, pop */
+      .x-enter { animation: x-enter 0.4s var(--x-ease) both; }
+      @keyframes x-enter { from { opacity: 0; transform: translate3d(0, 16px, 0); } to { opacity: 1; transform: none; } }
+      .x-rv { opacity: 0; transform: translate3d(0, 26px, 0); transition: opacity 0.6s ease-out, transform 0.7s var(--x-boing); }
+      .x-rv.is-in { opacity: 1; transform: none; }
+      .x-list--calc { overflow: visible; overflow-x: clip; }
+      .x-row.is-pop { animation: x-pop 0.5s var(--x-boing); position: relative; z-index: 2; }
+      @keyframes x-pop { 0% { transform: none; } 35% { transform: scale(1.02); background: var(--x-pink-l); border-radius: 20px; } 100% { transform: none; } }
+      .x-tile { display: block; cursor: pointer; position: relative; }
+      .x-tile input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+      .x-tiles { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+      .x-tiles > * { min-width: 0; }
+      .x-tile .x-card { display: flex; flex-direction: column; gap: 6px; min-height: 150px; transition: background 0.2s, transform 0.25s var(--x-boing); }
+      .x-tile input:checked ~ .x-card { background: var(--x-pink); border-color: var(--x-ink); }
+      .x-tile input:checked ~ .x-card .x-tile__hint { color: var(--x-ink); }
+      .x-tile input:focus-visible ~ .x-card { outline: 2px solid var(--x-rose); outline-offset: 3px; }
+      .x-tile__hint { margin-top: auto; font-size: 13px; color: var(--x-rose-d); font-weight: 800; }
+      .x-tile__ok { width: 32px; height: 32px; border-radius: 50%; background: var(--x-paper); border: 2px solid var(--x-ink); display: none; place-items: center; }
+      .x-tile input:checked ~ .x-card .x-tile__ok { display: grid; }
+      .x-tile input:checked ~ .x-card .x-step__n { display: none; }
+
+      /* overflow guard */
+      .x-view > *, .x-sec, .x-card, .x-list, .x-tbl-wrap, .x-cta, .x-sheet, .x-receipt { max-width: 100%; }
+      .x-grid > *, .x-two > * { min-width: 0; }
+      @media (max-width: 600px) {
+        .x-row { gap: 10px; padding: 14px; }
+        .x-plink { margin-left: 68px; }
+        .x-btns > .x-btn:not(.x-btn--sm) { flex: 1 1 100%; }
+        .x-foot__sleep img { width: 104px; }
+        .x-foot__sleep p { font-size: 16px; }
+      }
+      @media (max-width: 390px) {
+        .x-row .x-ini { width: 36px; height: 36px; font-size: 13px; border-radius: 13px; }
+        .x-row .x-chev { display: none; }
+        .x-plink { margin-left: 60px; }
+        .x-mood__img--hug { width: 128px; }
+        .x-mood__img--melt { width: 150px; }
+        .x-receipt { transform: none; padding-inline: 16px; }
+        .x-faq__mas img { width: 96px; }
+        .x-shelf { grid-auto-columns: minmax(200px, 78%); }
+      }
+      @media (max-width: 340px) {
+        .x-sheet { padding-inline: 16px; }
+        .x-bar { gap: 8px; padding-inline: 12px; }
+        .x-bar .x-btn { padding: 0 14px; font-size: 15px; }
+        .x-bar__peek { width: 44px; }
+        .x-bar__peek img { width: 74px; margin-left: -15px; }
+        .x-bar__txt b { font-size: 17px; }
+        .x-row__meta .x-nw { white-space: normal; }
+        .x-foot__sleep img { width: 92px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .x-enter, .x-row.is-pop, .x-breathe, .x-squish, .x-mas-pop, .x-bubble.is-new, .x-bar__peek img, .x-c.is-new { animation: none; }
+        .x-rv { opacity: 1; transform: none; transition: none; }
+        .x-btn, .x-chip, a.x-card, .x-tile .x-card, .x-burger, .x-car__ctl button, .x-switch span, .x-switch span::after, .x-prog__bar i, .x-faq summary::after { transition: none; }
+        .x-flip__in { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="x-header">
+      <div class="x-wrap x-header__in">
+        <a class="x-logo" href="#/" aria-label="덜냄 홈">
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M4 24c0-10 5.4-17 12-17s12 7 12 17c0 3.4-3.6 4.6-12 4.6S4 27.4 4 24z" fill="#FFB8C6" stroke="#5B3A2E" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M8.6 9.6 7.4 6.4l3.6 1.4M23.4 9.6l1.2-3.2-3.6 1.4" fill="#FFB8C6" stroke="#5B3A2E" stroke-width="1.6" stroke-linejoin="round" />
+            <path d="M10.4 17.6q1.6 1 3.2 0M18.4 17.6q1.6 1 3.2 0" fill="none" stroke="#5B3A2E" stroke-width="1.6" stroke-linecap="round" />
+            <ellipse cx="16" cy="21.4" rx="2.8" ry="1.9" fill="#FF8FA3" stroke="#5B3A2E" stroke-width="1.3" />
+          </svg>
+          덜냄 <small>구독 다이어트 계산기</small>
+        </a>
+        <nav class="x-nav" aria-label="주 메뉴" id="x-nav"></nav>
+        <button class="x-burger" id="x-burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="x-drawer">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h11M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+      <nav class="x-drawer" id="x-drawer" aria-label="모바일 메뉴"></nav>
+    </header>
+    <div class="page" id="top">
+      <main class="x-view" id="app" tabindex="-1"></main>
+    </div>
+    <footer class="x-foot">
+      <div class="x-wrap">
+        <div class="x-foot__sleep">
+          <img data-k="sleep" src="sleep.png" alt="덜냄이가 패치워크 이불을 덮고 자는 모습" width="317" height="258" />
+          <p>오늘 할 일 끝. 잘 자<small>덜냄이 · 귀찮지만 아끼는 건 잘해</small></p>
+        </div>
+        <a class="x-logo" href="#/" style="font-size:21px">덜냄 <small>구독 다이어트 계산기</small></a>
+        <nav class="x-foot__links" aria-label="하단 메뉴">
+          <a href="#/about">소개</a><a href="#/about?to=sources">출처</a><a href="#/about?to=affiliate">제휴 안내</a><a href="#/privacy">개인정보처리방침</a>
+        </nav>
+        <p>베타 · 가격 기준일 2026-10-25 · 이 정보는 참고용이며 가격은 바뀔 수 있어요.</p>
+        <p>출처마다 기준 요금제·시점이 달라 공식가가 다르게 보일 수 있어요. 결제 전 공식 페이지 확인.</p>
+        <div class="x-op" id="x-op"></div>
+        <p>© 2026 덜냄</p>
+      </div>
+    </footer>
+    <div class="x-bar" id="x-bar" hidden role="region" aria-label="절약 요약"></div>
+    <div id="x-stash" hidden aria-hidden="true">
+      <img data-k="wave" src="wave.png" alt="" width="356" height="231" />
+      <img data-k="shock" src="receipt-shock.png" alt="" width="326" height="299" />
+      <img data-k="melt" src="melt-lying.png" alt="" width="400" height="190" />
+      <img data-k="hug" src="coin-hug.png" alt="" width="374" height="240" />
+      <img data-k="sit" src="coin-sit.png" alt="" width="280" height="280" />
+    </div>
+    <script src="hark.js"></script>
+    <script>
+const PICKLE_URL = "https://pickle.plus"; // TODO: 파트너스 승인 후 내 추천 링크로 교체
+const PICKLE_SERVICE_URLS = {}; // 서비스 id → 딥링크 (예: netflix: "https://..."). 없으면 PICKLE_URL
+const OPERATOR = { name: "덜냄 운영자", email: "heymybiz@gmail.com", biz: "" }; // 빈 값인 줄은 숨겨요
+/* motion layer: vanilla, no libraries (cozy version) */
+window.X3D = (function () {
+  "use strict";
+  var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var api = { reduce: mq.matches }, offs = [];
+  if (mq.addEventListener) mq.addEventListener("change", function () { api.reduce = mq.matches; });
+  function fmt(n) { return Math.round(n).toLocaleString("ko-KR") + "원"; }
+  function on(el, ev, fn, opt) { el.addEventListener(ev, fn, opt); offs.push(function () { el.removeEventListener(ev, fn, opt); }); }
+  api.on = on;
+
+  api.count = function (el, from, to, dur) {
+    if (!el) return;
+    if (api.reduce) { el.textContent = fmt(to); return; }
+    var t0 = performance.now(); dur = dur || 700;
+    (function step(now) {
+      var p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(from + (to - from) * e);
+      if (p < 1 && el.isConnected) requestAnimationFrame(step);
+    })(t0);
+  };
+
+  /* restart a one-shot animation class */
+  api.bump = function (el, cls) {
+    if (!el || api.reduce) return;
+    el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);
+  };
+
+  api.cleanup = function () { offs.forEach(function (f) { f(); }); offs = []; };
+
+  /* 많이 찾는 구독: ‹ › step one card per press, wrapping at both ends.
+     The row tracks its own index, so every press moves it, even mid-swipe or when the
+     last cards cannot reach the left edge. Snap is paused while a button scrolls. */
+  function shelf(el) {
+    var p = document.getElementById("x-car-prev"), nx = document.getElementById("x-car-next"), timer = 0, pend = -1;
+    function stops() {
+      /* offsetLeft ignores the pop animation's transform, so the stops stay exact */
+      var cards = [].slice.call(el.children), pad = parseFloat(getComputedStyle(el).paddingLeft) || 0;
+      var max = Math.max(0, el.scrollWidth - el.clientWidth), out = [], first = cards[0] ? cards[0].offsetLeft : 0;
+      cards.forEach(function (c, k) { var x = Math.min(max, Math.round(k ? c.offsetLeft - first + pad : 0)); if (!out.length || x - out[out.length - 1] > 2) out.push(x); });
+      if (!out.length || out[out.length - 1] < max - 2) out.push(max);
+      return out;
+    }
+    function nearest(list) {
+      var cur = el.scrollLeft, best = 0;
+      list.forEach(function (x, i) { if (Math.abs(x - cur) < Math.abs(list[best] - cur)) best = i; });
+      return best;
+    }
+    function go(d) {
+      var list = stops(); if (list.length < 2) return;
+      /* a press during a smooth scroll counts from where the last press was headed */
+      var i = pend > -1 && pend < list.length ? pend : nearest(list), j = (i + d + list.length) % list.length;
+      pend = j;
+      el.classList.add("is-nav");
+      el.scrollTo({ left: list[j], behavior: api.reduce ? "auto" : "smooth" });
+      clearTimeout(timer);
+      timer = setTimeout(function () { el.scrollLeft = list[j]; el.classList.remove("is-nav"); pend = -1; }, api.reduce ? 0 : 450);
+      var cards = el.children, k = Math.min(cards.length - 1, j);
+      if (cards[k]) api.bump(cards[k], "x-mas-pop");
+    }
+    if (p) on(p, "click", function () { go(-1); });
+    if (nx) on(nx, "click", function () { go(1); });
+    on(el, "keydown", function (e) { if (e.key === "ArrowRight") { e.preventDefault(); go(1); } else if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); } });
+    function fit() { var ctl = p && p.parentNode; if (ctl) ctl.hidden = el.scrollWidth <= el.clientWidth + 2; }
+    fit(); on(window, "resize", fit);
+    offs.push(function () { clearTimeout(timer); });
+  }
+
+  function reveal(app) {
+    var els = [].slice.call(app.querySelectorAll(".x-sec, .x-grid > :not(.x-flip), .x-steps > *, .x-tiles > *, .x-tbl-wrap"));
+    var counts = [].slice.call(app.querySelectorAll("[data-count]"));
+    if (api.reduce || !("IntersectionObserver" in window)) return;
+    els.forEach(function (e) { e.classList.add("x-rv"); if (e.parentElement && /x-grid|x-steps|x-tiles/.test(e.parentElement.className)) e.style.transitionDelay = (([].indexOf.call(e.parentElement.children, e)) % 4) * 70 + "ms"; });
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x) {
+        if (!x.isIntersecting) return;
+        io.unobserve(x.target);
+        if (x.target.hasAttribute("data-count")) api.count(x.target, 0, +x.target.getAttribute("data-count"), 1200);
+        else x.target.classList.add("is-in");
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    els.concat(counts).forEach(function (e) { io.observe(e); });
+    offs.push(function () { io.disconnect(); });
+  }
+
+  function flips(app) {
+    on(app, "click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-flip-btn]");
+      if (!b) return;
+      var f = b.closest(".x-flip"), flip = !f.classList.contains("is-flipped");
+      f.classList.toggle("is-flipped", flip);
+      var front = f.querySelector(".x-flip__front"), back = f.querySelector(".x-flip__back");
+      front.inert = flip; back.inert = !flip;
+      front.querySelector("[data-flip-btn]").setAttribute("aria-expanded", flip);
+      var tgt = (flip ? back : front).querySelector("[data-flip-btn]");
+      if (tgt) tgt.focus({ preventScroll: true });
+    });
+  }
+
+  api.after = function (app) {
+    if (!api.reduce) { app.classList.remove("x-enter"); void app.offsetWidth; app.classList.add("x-enter"); }
+    var c = document.getElementById("x-car"); if (c) shelf(c);
+    reveal(app); flips(app);
+  };
+  return api;
+})();
+    </script>
+    <script>
+(function () {
+  "use strict";
+  var S = [
+    { id: "netflix", name: "넷플릭스", cat: "영상", o: 17000, s: 9490, c: "#E50914", i: "N" },
+    { id: "youtube", name: "유튜브 프리미엄", cat: "영상", o: 19500, s: 10900, c: "#E0002B", i: "Y" },
+    { id: "tving", name: "티빙", cat: "영상", o: 17000, s: 8490, c: "#E8173C", i: "T" },
+    { id: "disney", name: "디즈니+", cat: "영상", o: 17900, s: 9440, c: "#113CCF", i: "D+" },
+    { id: "wavve", name: "웨이브", cat: "영상", o: 13900, s: 3965, c: "#1A4FE0", i: "W" },
+    { id: "watcha", name: "왓챠", cat: "영상", o: 12900, s: 3715, c: "#E6004F", i: "W" },
+    { id: "laftel", name: "라프텔", cat: "영상", o: 14900, s: 4215, c: "#6B55E8", i: "L" },
+    { id: "applemusic", name: "애플 뮤직", cat: "음악", o: 13500, s: 2740, c: "#E8253F", i: "♪" },
+    { id: "spotify", name: "스포티파이 프리미엄", cat: "음악", o: 11990, s: 6900, c: "#107A36", i: "S" },
+    { id: "chatgpt", name: "ChatGPT (파티형)", cat: "AI", o: 29010, s: 5325, c: "#0B7A5F", i: "G" },
+    { id: "googleai", name: "Google AI", cat: "AI", o: 7500, s: 1740, c: "#3A75E0", i: "G" },
+    { id: "millie", name: "밀리의 서재", cat: "도서", o: 11910, s: 4460, c: "#FFC800", i: "밀", dark: true },
+    { id: "m365", name: "마이크로소프트 365", cat: "생산성", o: 15510, s: 3075, c: "#C43501", i: "M" },
+    { id: "naverplus", name: "네이버플러스 멤버십", cat: "멤버십", o: 4900, s: 990, c: "#03A94D", i: "N+" }
+  ];
+  var CATS = ["전체", "영상", "음악", "AI", "도서", "생산성", "멤버십"];
+  var PLANS = {
+    netflix: [["광고형 스탠다드", 5500], ["베이직", 9500], ["스탠다드", 13500], ["프리미엄", 17000]],
+    tving: [["베이직", 7900], ["스탠다드", 10900], ["프리미엄", 13900]],
+    wavve: [["베이직", 7900], ["스탠다드", 10900], ["프리미엄", 13900]],
+    disney: [["스탠다드", 9900], ["프리미엄", 13900]],
+    youtube: [["개인", 14900], ["가족 요금 (최대 5인)", 23900]],
+    spotify: [["프리미엄", 11990]],
+    applemusic: [["개인", 8900]],
+    chatgpt: [["ChatGPT Plus", 27000, "참고 · 토르킷, USD 20 환산"]]
+  };
+  /* 공식가(o)가 어떤 요금제 기준인지: 토르킷 요금표와 금액이 같은 경우만 요금제 이름을 적어요 */
+  var BASIS = { netflix: "프리미엄 요금제 기준", wavve: "프리미엄 요금제 기준", spotify: "프리미엄 요금제 기준" };
+  function basis(x) { return BASIS[x.id] || "피클플러스 표기 기준"; }
+  function purl(id) { return (id && PICKLE_SERVICE_URLS[id]) || PICKLE_URL; }
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  var DETAIL = {
+    netflix: {
+      tips: [
+        "<b>광고형 스탠다드 월 5,500원</b>으로 바꾸기. 광고가 괜찮다면 가장 확실하게 줄어요.",
+        "공동구독은 <b>월 9,490원~부터</b>. 다만 원 서비스 약관과 충돌할 수 있어요.",
+        "통신사·카드 결합 혜택이 있는지 먼저 확인해 보세요."
+      ],
+      warn: ["넷플릭스 등 원 서비스 약관은 원칙적으로 <b>같은 가구 내 공유만</b> 허용해요. 가구 외 공유는 계정 제한 위험이 있어요."],
+      fit: ["<b>광고 없이 보고 싶고 혼자라면</b> 공동구독(월 9,490원~)이 유리해요.", "<b>광고가 괜찮으면</b> 광고형 스탠다드(월 5,500원)가 더 싸요."],
+      guide: 1
+    },
+    youtube: {
+      tips: [
+        "<b>가족 요금 월 23,900원(최대 5인)</b>을 가족끼리 나누면 5명 기준 1인 약 4,780원이에요.",
+        "공동구독은 <b>월 10,900원~부터</b>.",
+        "피클플러스 표기 공식가(19,500원)와 토르킷 정리 개인 요금(14,900원)은 기준이 달라요. 결제 화면에서 확인해 주세요."
+      ],
+      warn: ["가족 요금은 원 서비스 약관상 같은 가구 구성원을 위한 요금이에요. 가구 외 공유는 약관 위반이 될 수 있어요."],
+      fit: ["<b>같이 사는 가족이 있다면</b> 가족 요금(5명 기준 1인 약 4,780원)이 가장 싸요.", "<b>혼자라면</b> 공동구독(월 10,900원~)이 개인 요금(14,900원)보다 싸요."],
+      guide: 2
+    },
+    tving: {
+      tips: [
+        "<b>베이직 월 7,900원</b>으로 낮추기. 화질·동시접속 수가 충분한지 확인하세요.",
+        "통신사 결합 상품에 티빙이 포함돼 있는지 확인해 보세요.",
+        "공동구독은 <b>월 8,490원~부터</b>."
+      ],
+      warn: ["원 서비스 약관은 원칙적으로 같은 가구 내 공유만 허용해요. 가구 외 공유는 이용 제한 위험이 있어요."]
+    },
+    chatgpt: {
+      tips: [
+        "<b>무료 버전으로 충분한지</b> 먼저 확인해 보세요. 가끔 쓰면 유료가 필요 없을 수 있어요.",
+        "공동구독(파티형)은 <b>월 5,325원~부터</b>.",
+        "공유 계정을 쓰면 <b>대화 기록이 다른 사람에게 노출</b>될 수 있어요. 개인정보·업무 내용은 입력하지 마세요."
+      ],
+      warn: ["원 서비스 약관상 계정은 개인 사용이 원칙이에요. 공유 계정은 이용 정지 위험이 있어요."],
+      priceNote: "<b>계산에는 피클플러스 표기 29,010원을 써요.</b> 아래 표의 약 27,000원은 토르킷이 USD 20을 원화로 환산한 참고 금액이에요. 두 출처의 기준이 달라 금액이 달라요. 최종 금액은 결제 화면에서 확인하세요."
+    }
+  };
+  var GUIDES = [
+    { id: 1, tag: "영상", title: "넷플릭스 싸게 보는 3가지 방법 (2026)", desc: "광고형, 공동구독, 결합 혜택을 차례로 따져봐요.", read: "3분", svc: "netflix" },
+    { id: 2, tag: "영상", title: "유튜브 프리미엄, 가족 요금 vs 공동구독", desc: "5명이 모이면 1인 약 4,780원. 숫자로 비교해요.", read: "3분", svc: "youtube" },
+    { id: 3, tag: "절약 습관", title: "안 쓰는 구독 찾는 법", desc: "결제 내역 4곳만 보면 새는 구독이 보여요.", read: "2분" }
+  ];
+  var NOTE_SRC = "출처마다 기준 요금제·시점이 달라 공식가가 다르게 보일 수 있어요. 결제 전 공식 페이지 확인.";
+  var NAV = [["#/", "홈"], ["#/calculator", "계산기"], ["#/services", "서비스별 요금"], ["#/platforms", "플랫폼 비교"], ["#/checklist", "가입 전 체크"], ["#/guides", "가이드"]];
+
+  var state = { sel: { netflix: true, youtube: true, tving: true }, example: true, cat: "전체", q: "", cq: "", checks: {} }, barIO = null;
+  var EXAMPLE = "예시: 넷플릭스·유튜브·티빙";
+  var I_SEARCH = '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="m14 14 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+  /* ---------- 덜냄이: images live once in the static markup and are cloned in ---------- */
+  var HI = 10000; /* 월 절약액이 이 이상이면 동전 위에 앉아요 */
+  var LINES = ["구독료… 매달 줄줄 새고 있지 않아?", "나 대신 계산해줄게. 귀찮으니까 빨리.", "넷플 혼자 내면 손해야…", "아낀 돈으로 붕어빵 사먹자"];
+  var ALT = {
+    wave: "덜냄이가 반쯤 녹은 채로 귀찮은 듯 손을 흔드는 모습",
+    shock: "덜냄이가 긴 영수증을 읽고 깜짝 놀란 모습",
+    melt: "덜냄이가 웅덩이처럼 납작하게 녹아 누워 있는 모습",
+    hug: "덜냄이가 금화를 꼭 끌어안고 한숨 쉬는 모습",
+    sit: "덜냄이가 동전 더미 위에 뿌듯하게 앉아 있는 모습",
+    sleep: "덜냄이가 패치워크 이불을 덮고 자는 모습"
+  };
+  function M(k, cls, alt) { return '<i class="x-slot" data-k="' + k + '" data-c="' + (cls || "") + '" data-a="' + (alt === false ? "" : esc(alt || ALT[k])) + '"></i>'; }
+  function hydrate(root) {
+    [].forEach.call((root || document).querySelectorAll(".x-slot"), function (slot) {
+      var k = slot.getAttribute("data-k"), src = document.querySelector('#x-stash img[data-k="' + k + '"], .x-foot img[data-k="' + k + '"]');
+      if (!src) { slot.remove(); return; }
+      var im = src.cloneNode(false), a = slot.getAttribute("data-a");
+      im.removeAttribute("data-k");
+      im.className = "x-mas " + slot.getAttribute("data-c");
+      im.alt = a || "";
+      if (!a) im.setAttribute("aria-hidden", "true");
+      im.draggable = false;
+      im.decoding = "async";
+      slot.replaceWith(im);
+    });
+  }
+  function pose(save, n) { return !n ? "melt" : save >= HI ? "sit" : "hug"; }
+
+  function won(n) { return Number(n).toLocaleString("ko-KR") + "원"; }
+  function rate(x) { return Math.round((1 - x.s / x.o) * 100); }
+  function byId(id) { for (var k = 0; k < S.length; k++) if (S[k].id === id) return S[k]; return null; }
+  function ini(x, lg) {
+    return '<span class="x-ini' + (lg ? " x-ini--lg" : "") + '" aria-hidden="true" style="background:' + x.c + (x.dark ? ";color:#3B2A12" : "") + '">' + x.i + "</span>";
+  }
+  var I_INFO = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4.2M8 4.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+  var I_WARN = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8 15 14H1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6.3v3.6M8 11.8v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+  var I_CHEV = '<svg class="x-chev" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="m8 5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var I_CHECK = '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="m3 7.2 2.6 2.6L11 4.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var DISC = "이 링크로 가입하면 덜냄이 소정의 추천 보상을 받을 수 있어요. 가격은 같아요.";
+  var PRI = "x-btn x-btn--pri x-btn--cta";
+  function pk(label, cls, id, svc) { return '<a class="' + (cls || PRI) + '"' + (id ? ' id="' + id + '"' : "") + ' href="' + purl(svc) + '" target="_blank" rel="sponsored noopener">' + label + "</a>"; }
+  function disc() { return '<p class="x-disc">' + DISC + "</p>"; }
+  /* three one-line answers under every primary 피클플러스 CTA */
+  function obj() {
+    return '<dl class="x-obj">' +
+      "<div><dt>가격 똑같나요?</dt><dd>네, 추천 링크로 가도 가격은 바뀌지 않아요.</dd></div>" +
+      "<div><dt>해지 쉬운가요?</dt><dd>해지·환불 방법은 피클플러스 약관에서 확인이 필요해요.</dd></div>" +
+      '<div><dt>안전한가요?</dt><dd>원 서비스 약관상 제한될 수 있어요 · <a href="#/checklist">체크리스트 1분 확인 →</a></dd></div></dl>';
+  }
+  function pkBlock(label, id, svc, cls) { return pk(label, cls || PRI, id, svc) + obj() + disc(); }
+  /* 공동구독이란? one-liner + two account types */
+  function coop(chat) {
+    return '<div class="x-card x-coop"><p class="x-h3">공동구독이란?</p><p class="x-p">여러 명이 한 요금제를 나눠 내는 거예요. 피클플러스가 같이 낼 사람을 자동으로 연결해 줘요.</p>' +
+      '<div class="x-coop__ways"><div><b>내 계정 초대형</b><span>내 계정을 그대로 쓰고, 함께 내는 요금제에 초대받아요.</span></div>' +
+      '<div' + (chat ? ' class="is-on"' : "") + '><b>계정 공유형 (파티형)</b><span>한 계정 아이디를 여러 명이 함께 써요. 보안이 조금 약할 수 있어요.</span></div></div>' +
+      (chat ? note("<b>ChatGPT는 파티형이에요.</b> 계정 공유형이라 한 계정 아이디를 함께 써요. 보안이 조금 약할 수 있으니 개인정보·업무 내용은 입력하지 마세요.", true)
+        : '<p class="x-muted">서비스마다 방식이 달라요. 가입 화면에서 어떤 방식인지 확인하세요.</p>') + "</div>";
+  }
+  function opLines() {
+    var o = typeof OPERATOR === "object" && OPERATOR ? OPERATOR : {}, r = [["운영", "개인 운영 비교 사이트 · 피클플러스와 별개"]];
+    if (o.name) r.push(["운영자", esc(o.name)]);
+    if (o.email) r.push(["문의 이메일", '<a href="mailto:' + esc(o.email) + '">' + esc(o.email) + "</a>"]);
+    if (o.biz) r.push(["사업자 정보", esc(o.biz)]);
+    r.push(["제휴 안내", DISC]);
+    return r;
+  }
+  function saveLabel(year) { return year > 0 ? "피클플러스에서 연 " + won(year) + " 아끼기" : "내 서비스 최저가 보기"; }
+  function totals() { var O = 0, Sh = 0, n = 0; S.forEach(function (x) { if (state.sel[x.id]) { O += x.o; Sh += x.s; n++; } }); return { O: O, Sh: Sh, n: n, year: (O - Sh) * 12 }; }
+  var FAQ = [
+    ["가격 똑같나요?", "네. 덜냄 추천 링크로 가도 가격은 바뀌지 않아요. 대신 덜냄이 소정의 추천 보상을 받을 수 있어요. 표시 가격은 '~부터' 최저가라 인원·기간에 따라 달라요."],
+    ["해지 쉬운가요?", "해지 방법과 환불 시점은 피클플러스 약관에서 확인이 필요해요. 가입할 때 해지 메뉴 위치와 다음 결제일을 같이 알아두세요."],
+    ["안전한가요?", "보장된 안전은 없어요. 한국소비자원은 공동구독·계정공유가 원 서비스 약관을 어기면 이용이 제한될 수 있다고 안내했어요. 가입 전 체크리스트 5가지를 먼저 확인하세요."],
+    ["계정이 막히면 보상받을 수 있나요?", "이용정지 때 남은 기간을 보상하는지는 피클플러스 약관에서 확인이 필요해요. 덜냄은 확인되지 않은 내용을 적지 않았어요."],
+    ["왜 피클플러스를 추천하나요?", "서비스별 공개 최저가를 바로 확인할 수 있어서예요(덜냄 가격 기준). 추천 링크라는 점도 숨기지 않아요."]
+  ];
+  /* withMas: show 덜냄이 hugging a coin (left out where the page already shows it) */
+  function faq(withMas) {
+    return '<section class="x-sec"><h2 class="x-h2">자주 묻는 질문</h2><p class="x-muted" style="margin:0">모르는 건 모른다고 적었어요.</p>' +
+      (withMas ? '<div class="x-faq__mas" id="faq-m">' + M("hug", "", false) + "<p>궁금한 거 있으면 물어봐. 대답은… 천천히 할게.</p></div>" : "") +
+      '<div class="x-faq">' +
+      FAQ.map(function (q) { return "<details><summary>" + q[0] + "</summary><p>" + q[1] + "</p></details>"; }).join("") + "</div></section>";
+  }
+  function start3() {
+    return '<section class="x-sec x-gray x-start"><h2 class="x-h2">이렇게 시작해요 3단계</h2><p class="x-sub">천천히 해도 돼요.</p><div class="x-steps">' +
+      '<div class="x-card"><span class="x-step__n">1</span><p class="x-h3">계산하기</p><p class="x-p" style="margin:0">쓰는 구독을 켜고 1년 절약액을 봐요.</p></div>' +
+      '<div class="x-card"><span class="x-step__n">2</span><p class="x-h3">서비스 고르기</p><p class="x-p" style="margin:0">아끼는 폭이 큰 서비스부터 골라요.</p></div>' +
+      '<div class="x-card"><span class="x-step__n">3</span><p class="x-h3">피클플러스에서 자리 찾기</p><p class="x-p" style="margin:0">남은 자리와 약관을 확인하고 시작해요.</p></div>' +
+      "</div></section>";
+  }
+  function next(t, p, href, label, extra) {
+    return '<section class="x-sec"><div class="x-cta"><p class="x-h3">' + t + '</p><p class="x-p">' + p + '</p><a class="' + PRI + '" href="' + href + '">' + label + "</a>" + (extra || "") + "</div></section>";
+  }
+  function plink(x, cls) { return pk("피클플러스 최저 " + won(x.s) + '~&nbsp;<span class="x-nw">보기 ↗</span>', "x-plink" + (cls ? " " + cls : ""), null, x.id); }
+  function note(t, warn) { return '<p class="x-note' + (warn ? " x-note--warn" : "") + '">' + (warn ? I_WARN : I_INFO) + "<span>" + t + "</span></p>"; }
+  function back(href, t) { return '<a class="x-back" href="' + href + '"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="m12 5-5 5 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' + t + "</a>"; }
+  function empty(t, sub) { return '<div class="x-empty">' + M("sleep", "", false) + '<p style="margin:0;font-weight:700;color:var(--x-ink-2)">' + t + "</p>" + (sub ? '<p class="x-muted" style="margin:0">' + sub + "</p>" : "") + "</div>"; }
+
+  function svcCard(x) {
+    return '<a class="x-card x-svc" href="#/services/' + x.id + '">' +
+      '<div class="x-svc__top">' + ini(x) + '<span class="x-badge">' + rate(x) + "% 절약</span></div>" +
+      '<div><p class="x-h3" style="margin:0">' + x.name + '</p><p class="x-strike" style="margin:2px 0 0">공식가 ' + won(x.o) + '</p><span class="x-basis">' + basis(x) + "</span></div>" +
+      '<p class="x-price" style="margin:0">' + won(x.s) + " <small>~부터</small></p>" +
+      '<p class="x-muted" style="margin:-10px 0 0">공동구독 최저 월 요금</p></a>';
+  }
+  function guideCard(g) {
+    return '<a class="x-card" href="#/guides/' + g.id + '"><span class="x-guide-tag">' + g.tag + '</span><p class="x-h3">' + g.title + '</p><p class="x-p" style="font-size:15px">' + g.desc + '</p><p class="x-muted" style="margin:0">읽는 시간 ' + g.read + "</p></a>";
+  }
+
+  /* ---------- pages ---------- */
+  function home() {
+    var O = 0, Sh = 0;
+    S.forEach(function (x) { O += x.o; Sh += x.s; });
+    var pop = ["netflix", "youtube", "tving", "disney", "chatgpt", "spotify", "wavve", "millie"].map(byId);
+    var ex = ["netflix", "youtube", "tving"].map(byId), exO = 0, exS = 0;
+    ex.forEach(function (x) { exO += x.o; exS += x.s; });
+    return '<section class="x-hero">' +
+      '<div class="x-hero__copy"><p class="x-eyebrow">매달 새는 구독료</p><h1 class="x-h1">넷플릭스,<br />아직 <span class="x-doodle">17,000원</span> 다 내세요?</h1>' +
+      '<p class="x-sub">같은 서비스도 나눠 내면 14개 기준 월 최대 ' + won(O - Sh) + " 덜 내요. 30초면 계산 끝나요.</p>" +
+      '<a class="' + PRI + '" href="#/calculator" data-jump="h-calc">30초 만에 계산해 보기</a>' +
+      '<p class="x-hero__micro">가격 기준일 2026-10-25 · <a href="#/checklist">가입 전 체크리스트 먼저 보기</a></p></div>' +
+      '<div class="x-stage">' +
+      '<p class="x-bubble" id="h-bubble" aria-live="polite">' + LINES[0] + "</p>" +
+      '<button type="button" class="x-tapme" id="h-mas" aria-label="덜냄이 누르기 · 다른 말을 해요">' + M("wave", "x-breathe") + "</button>" +
+      '<div class="x-floor" aria-hidden="true"></div>' +
+      '<p class="x-hint"><b style="color:var(--x-ink)">덜냄이</b> · 귀찮지만 아끼는 건 잘해 · 누르면 말해요</p>' +
+      "</div></section>" +
+
+      /* 새는 돈 */
+      '<div class="x-squiggle" aria-hidden="true"></div>' +
+      '<section class="x-sec" id="h-leak" style="margin-top:36px"><p class="x-eyebrow">새는 돈</p><h2 class="x-h2">구독료, 티 안 나게 매달 줄줄 새요</h2><p class="x-sub">많이 쓰는 3개만 공식가로 내도 이만큼이에요.</p>' +
+      '<div class="x-leak"><figure class="x-leak__mas" style="margin:0 auto">' + M("shock") + '<figcaption class="x-hint">“…이거 다 매달 나가는 거야?”</figcaption></figure>' +
+      '<div class="x-receipt" role="group" aria-label="예시 영수증: 매달 나가는 구독료"><h3>RECEIPT</h3><p class="x-receipt__sub">매달 자동결제 · 2026-10-25 기준</p><dl>' +
+      ex.map(function (x) { return "<div><dt>" + x.name + '<br /><small>나눠 내면 ' + won(x.s) + "~</small></dt><dd>" + won(x.o) + "</dd></div>"; }).join("") +
+      '</dl><div class="x-receipt__total"><span>합계 · 월</span><b>' + won(exO) + "</b></div>" +
+      '<div class="x-sheet__row"><span>1년이면</span><b>' + won(exO * 12) + "</b></div>" +
+      '<p class="x-stamp">나눠 내면 월 ' + won(exS) + "~</p>" +
+      '<p class="x-receipt__foot">공식가 기준 · 나눠 내는 가격은 \'~부터\' 최저가</p></div></div></section>' +
+
+      /* 30초 계산 */
+      '<section class="x-sec" id="h-calc"><p class="x-eyebrow">30초 계산</p><h2 class="x-h2">지금 쓰는 구독을 눌러 보세요</h2><p class="x-sub">예시로 넷플릭스·유튜브·티빙을 켜 뒀어요. 눌러서 바꿔 보세요. 저장되지 않아요.</p>' +
+      '<div class="x-picks" id="h-picks" role="group" aria-label="쓰는 구독 선택"></div>' +
+      '<a class="x-tlink" href="#/calculator">음악·AI·도서까지 14개 전부 보기 →</a></section>' +
+
+      /* 결과: 스토리 카드 */
+      '<section class="x-sec" id="h-res" style="margin-top:32px"><div class="x-storycard"><div class="x-stat" role="group" aria-label="계산 결과" aria-live="polite" id="h-stat"></div>' +
+      '<div class="x-share"><button type="button" class="x-btn x-btn--sec x-btn--sm" id="h-share">친구한테 자랑하기</button><p id="h-share-msg" aria-live="polite"></p></div></div>' +
+      '<p class="x-muted" style="margin:10px 0 0;text-align:center">나눠 내는 가격은 피클플러스 표기 \'~부터\' 최저가예요. 치킨은 1마리 20,000원 기준.</p>' +
+      '<div style="margin-top:20px">' + pkBlock(saveLabel(totals().year), "h-cta1", null, "x-btn x-btn--sec x-btn--wide") + "</div>" +
+      '<div style="margin-top:20px">' + coop() + "</div></section>" +
+
+      start3() +
+
+      /* 불안 해소 */
+      '<section class="x-sec" id="h-safe"><div class="x-mhead"><div><p class="x-eyebrow">가입 전 확인하세요</p><h2 class="x-h2">싸게 내기 전에, 이것만 확인해요</h2><p class="x-sub">1분이면 돼요.</p></div>' +
+      '<figure class="x-mhead__fig">' + M("hug") + "<figcaption>“아끼는 것도 안전하게. 같이 보자.”</figcaption></figure></div><div class=\"x-two\">" +
+      '<div class="x-card"><p class="x-h3">체크리스트 5가지</p><ol class="x-ol">' + CHECKS.map(function (c) { return "<li>" + c[0] + "</li>"; }).join("") + '</ol><a class="x-tlink" href="#/checklist">하나씩 체크해 보기 →</a></div>' +
+      '<div class="x-card"><p class="x-h3">약관에서 확인할 것</p><ul class="x-ul">' +
+      "<li><b>환불</b>: 언제부터 환불이 안 되는지</li><li><b>보상</b>: 계정이 막히면 남은 기간을 돌려받는지</li><li><b>계정 공유 정책</b>: 원 서비스가 가구 밖 공유를 허용하는지</li></ul>" +
+      '<div class="x-safe-note">' + note("<b>한국소비자원</b> · 공동구독·계정공유는 원 서비스 약관을 어기면 이용이 제한될 수 있어요. 중개 플랫폼의 환불 규정을 먼저 확인하세요.", true) + "</div></div>" +
+      "</div></section>" +
+
+      faq(false) +
+
+      /* 부드러운 CTA */
+      '<section class="x-sec"><div class="x-cta"><p class="x-h3">확인했다면, 자리부터 구경해요</p><p class="x-p">내 서비스 최저가와 남은 자리를 보고 정해도 늦지 않아요.</p>' +
+      pkBlock(saveLabel(totals().year), "h-cta") + "</div></section>" +
+
+      '<section class="x-sec"><div class="x-sec__head"><div><h2 class="x-h2">많이 찾는 구독</h2><p class="x-muted" style="margin:0">공동구독가는 피클플러스 표기 최저가 기준이에요.</p></div><a class="x-more" href="#/services">전체 보기 ›</a></div>' +
+      '<div class="x-shelf" id="x-car" role="region" aria-label="많이 찾는 구독 · 옆으로 넘겨 보세요" tabindex="0">' + pop.map(svcCard).join("") + "</div>" +
+      '<div class="x-car__ctl"><button type="button" id="x-car-prev" aria-label="이전 서비스" aria-controls="x-car">‹</button><button type="button" id="x-car-next" aria-label="다음 서비스" aria-controls="x-car">›</button></div></section>' +
+
+      next("14개 전부 넣어 볼까요?", "음악·AI·도서까지 켜 보면 새는 돈이 더 보여요.", "#/calculator", "계산기에서 전부 계산하기",
+        '<div class="x-tlinks"><a class="x-tlink" href="#/guides">아끼는 방법 가이드 보기</a></div>');
+  }
+  var HOME_PICK = ["netflix", "youtube", "tving", "disney", "chatgpt", "spotify", "wavve", "millie"];
+  function storyTop() { return '<div class="x-story__bars" aria-hidden="true"><i class="is-on"></i><i></i><i></i></div><p class="x-story__top"><span aria-hidden="true">덜</span>덜냄이 <small>· 방금</small></p>'; }
+  function homeBind() {
+    var picks = document.getElementById("h-picks"), stat = document.getElementById("h-stat"), cta = document.getElementById("h-cta"), cta1 = document.getElementById("h-cta1"), prevYear = null, prevPose = null;
+    /* hero: tap 덜냄이 → squish + next line */
+    var mas = document.getElementById("h-mas"), bub = document.getElementById("h-bubble"), li = 0;
+    mas.addEventListener("click", function () {
+      li = (li + 1) % LINES.length;
+      bub.textContent = LINES[li];
+      X3D.bump(bub, "is-new");
+      var im = mas.querySelector("img");
+      if (im && !X3D.reduce) {
+        im.classList.remove("x-breathe"); X3D.bump(im, "x-squish");
+        im.addEventListener("animationend", function done() { im.removeEventListener("animationend", done); im.classList.remove("x-squish"); im.classList.add("x-breathe"); });
+      }
+    });
+    /* share the story card */
+    var share = document.getElementById("h-share"), msg = document.getElementById("h-share-msg");
+    share.addEventListener("click", function () {
+      var t = totals(), text = "덜냄이가 연 " + won(t.year) + " 아껴줬어 · 덜냄 구독 다이어트 계산기";
+      if (navigator.share) { navigator.share({ title: "덜냄", text: text, url: location.href }).catch(function () {}); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text + " " + location.href).then(function () { msg.textContent = "복사했어. 붙여넣기만 하면 돼."; }, function () { msg.textContent = "화면을 캡처해서 보내 줘."; });
+      } else msg.textContent = "화면을 캡처해서 보내 줘.";
+    });
+    function draw() {
+      picks.innerHTML = HOME_PICK.map(byId).map(function (x) {
+        var on = !!state.sel[x.id];
+        return '<button type="button" class="x-chip x-pick' + (on ? " is-on" : "") + '" aria-pressed="' + on + '" data-id="' + x.id + '">' + (on ? I_CHECK : "") + x.name.replace(/ \(.*\)/, "") + "</button>";
+      }).join("");
+      var t = totals(), chick = Math.floor(t.year / 20000), p = t.n ? "sit" : "melt";
+      stat.innerHTML = storyTop() + (t.n
+        ? '<p class="x-stat__lab">' + (state.example ? EXAMPLE + " · 1년이면" : "선택한 " + t.n + "개, 1년이면") + "</p>" +
+          '<p class="x-story__who">덜냄이가</p><p class="x-stat__new">연 <span id="h-year">' + won(t.year) + '</span></p><p class="x-stat__lab"><b>아껴줬어</b> · 나눠 내면 이만큼 덜 낼 수 있어요</p>' +
+          '<div class="x-story__mas">' + M("sit", "", "덜냄이가 동전 더미 위에 뿌듯하게 앉아 있는 모습") + "</div>" +
+          (chick ? '<p class="x-stat__chick">대략 치킨 ' + chick.toLocaleString("ko-KR") + "마리 값이에요</p>" : "") +
+          '<p class="x-stat__foot"><span>지금 월 ' + won(t.O) + "</span><b>나눠 내면 월 " + won(t.Sh) + "~</b></p>"
+        : '<p class="x-stat__lab">1년이면</p><p class="x-stat__new">0원</p><p class="x-stat__lab">위에서 쓰는 구독을 골라 주세요</p>' +
+          '<div class="x-story__mas x-story__mas--melt">' + M("melt") + '</div><p class="x-story__who" style="text-align:center">골라주면 일어날게…</p>');
+      hydrate(stat);
+      if (prevPose && prevPose !== p) X3D.bump(stat.querySelector(".x-story__mas img"), "x-mas-pop");
+      prevPose = p;
+      share.hidden = !t.n; if (!t.n) msg.textContent = "";
+      cta.textContent = saveLabel(t.year); cta1.textContent = saveLabel(t.year);
+      if (t.n && prevYear !== null && prevYear !== t.year) X3D.count(document.getElementById("h-year"), prevYear, t.year);
+      prevYear = t.year;
+    }
+    picks.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-id]"); if (!b) return;
+      var id = b.getAttribute("data-id"); state.sel[id] = !state.sel[id]; state.example = false; draw();
+      var nb = picks.querySelector('[data-id="' + id + '"]'); if (nb) nb.focus();
+    });
+    draw();
+  }
+
+  function calculator() {
+    return '<p class="x-eyebrow">계산기 · 30초</p><h1 class="x-h1" style="font-size:clamp(28px,5vw,40px)">쓰는 구독만 켜 보세요</h1>' +
+      '<p class="x-sub">1년에 얼마 새는지 바로 보여드려요. 덜냄이도 같이 볼게요.</p>' +
+      '<div class="x-calc"><div>' +
+      '<div class="x-search">' + I_SEARCH + '<input type="search" id="c-q" placeholder="서비스 이름으로 찾기" aria-label="서비스 이름으로 찾기" /></div>' +
+      '<div class="x-chips" role="group" aria-label="카테고리" id="c-chips"></div>' +
+      '<div class="x-toolbar"><span id="c-count"></span><button type="button" class="x-tlink" id="c-all"></button></div>' +
+      '<div class="x-list x-list--calc" id="c-list"></div>' +
+      '<div style="margin-top:12px">' + note(NOTE_SRC) + "</div></div>" +
+      '<aside class="x-sheet" aria-label="계산 결과" aria-live="polite" id="c-sheet"></aside></div>' +
+      start3() + faq(true) +
+      '<section class="x-sec" id="c-end"><div class="x-cta"><p class="x-h3" id="c-end-t"></p><p class="x-p">가입 전에 약관·환불·해지 방법을 1분만 확인해요.</p>' +
+      '<a class="x-btn x-btn--sec x-btn--wide" href="#/checklist">가입 전 체크리스트 보기</a><div class="x-tlinks"><a class="x-tlink" href="#/platforms">플랫폼 비교 보기</a></div></div></section>';
+  }
+  var MOOD = {
+    melt: ["골라주면 일어날게…", "구독을 켜면 아낄 돈이 보여요"],
+    hug: ["오… 조금 모였다. 소중해.", "월 1만원 넘게 아끼면 동전 위에 올라갈게"],
+    sit: ["이 정도면 나 좀 잘했지?", ""]
+  };
+  function calcBind() {
+    var chips = document.getElementById("c-chips"), list = document.getElementById("c-list"), sheet = document.getElementById("c-sheet"), bar = document.getElementById("x-bar");
+    var endT = document.getElementById("c-end-t"), cq = document.getElementById("c-q");
+    var prevSave = null, prevCoins = 0, popId = null, sheetIn = false, curN = 0, prevPose = null;
+    cq.value = state.cq;
+    function visible() {
+      var t = state.cq.trim().toLowerCase().replace(/\s/g, "");
+      return S.filter(function (x) { return (state.cat === "전체" || x.cat === state.cat) && (!t || (x.name + x.id).toLowerCase().replace(/\s/g, "").indexOf(t) > -1); });
+    }
+    function setBarVis() { bar.hidden = !curN || sheetIn; }
+    function mood(p, save, coins) {
+      var m = MOOD[p], sub = p === "sit" ? "월 " + won(save) + " 아끼는 중" : m[1];
+      return '<div class="x-mood"><div class="x-mood__scene">' + M(p, "x-mood__img x-mood__img--" + p) + coins + '</div><p class="x-mood__say">' + m[0] + "<small>" + sub + "</small><small>연 절약액만큼 동전이 쌓여요 · 동전 1개 ≈ 10만원</small></p></div>";
+    }
+    function draw() {
+      chips.innerHTML = CATS.map(function (c) { return '<button class="x-chip' + (state.cat === c ? " is-on" : "") + '" aria-pressed="' + (state.cat === c) + '" data-cat="' + c + '">' + c + "</button>"; }).join("");
+      var vis = visible();
+      list.innerHTML = vis.length ? vis.map(function (x) {
+        var on = !!state.sel[x.id];
+        return '<div class="x-srow"><label class="x-row">' + ini(x) + '<span class="x-row__body"><span class="x-row__name">' + x.name + '</span><br /><span class="x-row__meta"><span class="x-nw">공식 ' + won(x.o) + '</span> <span class="x-nw">' + basis(x).replace(/ 기준$/, "") + '</span><br /><span class="x-nw">나눠 내면 ' + won(x.s) + "~</span></span></span>" +
+          '<span class="x-switch"><input type="checkbox" data-id="' + x.id + '"' + (on ? " checked" : "") + ' aria-label="' + x.name + ' 선택" /><span></span></span></label></div>';
+      }).join("") : empty("찾는 서비스가 없어요", "덜냄이도 못 찾았어. 다른 이름으로 찾아봐…");
+      hydrate(list);
+      document.getElementById("c-all").style.display = vis.length ? "" : "none";
+      var O = 0, Sh = 0, n = 0;
+      S.forEach(function (x) { if (state.sel[x.id]) { O += x.o; Sh += x.s; n++; } });
+      var allOn = vis.length && vis.every(function (x) { return state.sel[x.id]; });
+      document.getElementById("c-count").textContent = (state.example && n ? "예시 " : "") + n + "개 선택됨";
+      document.getElementById("c-all").textContent = allOn ? "전체 해제" : "전체 선택";
+      var save = O - Sh, year = save * 12, chick = Math.floor(year / 20000), p = pose(save, n);
+      sheet.innerHTML = n
+        ? '<p class="x-hook__lab">' + (state.example ? EXAMPLE + " · 1년이면" : "1년이면") + '</p><div class="x-hook__fig">' + won(year) + '</div><p class="x-hook__tail">아낄 수 있어요</p>' +
+          (chick ? '<p class="x-hook__cmp">대략 치킨 ' + chick.toLocaleString("ko-KR") + "마리 값이에요</p>" : "") +
+          mood(p, save, coinStack(year)) +
+          '<div style="margin-top:16px">' + pkBlock(saveLabel(year)) + "</div>" +
+          '<div class="x-sheet__rows"><div class="x-sheet__row"><span>지금 내는 돈 <span class="x-muted">(공식가)</span></span><b>월 ' + won(O) + "</b></div>" +
+          '<div class="x-sheet__row"><span>나눠 내면 최저</span><b>월 ' + won(Sh) + "~</b></div>" +
+          '<div class="x-sheet__row"><span>매달 덜 내는 돈</span><b style="color:var(--x-rose)">월 ' + won(save) + "</b></div></div>" +
+          note("나눠 내는 가격은 '~부터' 최저가예요. 인원·기간에 따라 달라요. 치킨은 1마리 20,000원 기준.") +
+          '<a class="x-tlink" href="#/checklist" style="margin-top:4px">가입 전 체크리스트 5가지 보기 →</a>'
+        : '<p class="x-hook__lab">1년이면</p><div class="x-hook__fig" style="color:var(--x-ink-3)">0원</div><p class="x-hook__tail">구독을 켜면 아낄 돈이 보여요</p>' + mood("melt", 0, coinStack(0));
+      hydrate(sheet);
+      if (prevPose && prevPose !== p) X3D.bump(sheet.querySelector(".x-mood__img"), "x-mas-pop");
+      prevPose = p;
+      var fm = document.getElementById("faq-m"); if (fm) fm.hidden = p === "hug";
+      endT.textContent = n ? "1년 " + won(year) + ", 아끼기 전에 확인해요" : "구독을 켜면 아낄 돈이 보여요";
+      if (n && prevSave !== null && prevSave !== save) X3D.count(sheet.querySelector(".x-hook__fig"), prevSave * 12, year);
+      prevSave = save;
+      curN = n;
+      document.body.classList.toggle("has-bar", !!n);
+      if (n) {
+        bar.innerHTML = '<span class="x-bar__peek" aria-hidden="true">' + M("wave", "", false) + '</span><div class="x-bar__txt"><span>1년이면 아낄 수 있어요</span><b>' + won(year) + "</b><span>추천 링크 · 가격은 같아요</span></div>" + pk("최저가 보기", "x-btn x-btn--pri");
+        hydrate(bar);
+      }
+      setBarVis();
+      if (popId) { var pe = list.querySelector('[data-id="' + popId + '"]'); if (pe && !X3D.reduce) pe.closest(".x-row").classList.add("is-pop"); popId = null; }
+    }
+    function coinStack(year) {
+      var c = year > 0 ? Math.min(16, Math.max(1, Math.round(year / 100000))) : 0, h = "";
+      for (var k = 0; k < c; k++) h += '<i class="x-c' + (k >= prevCoins ? " is-new" : "") + '" style="bottom:' + k * 6 + "px;animation-delay:" + (k >= prevCoins ? (k - prevCoins) * 60 : 0) + 'ms"></i>';
+      prevCoins = c;
+      return c ? '<div class="x-stack__pile" aria-hidden="true" style="height:' + (24 + (c - 1) * 6) + 'px">' + h + "</div>" : "";
+    }
+    chips.addEventListener("click", function (e) { var b = e.target.closest("[data-cat]"); if (b) { state.cat = b.getAttribute("data-cat"); draw(); } });
+    list.addEventListener("change", function (e) { var id = e.target.getAttribute("data-id"); if (id) { state.sel[id] = e.target.checked; state.example = false; popId = e.target.checked ? id : null; draw(); var el = list.querySelector('[data-id="' + id + '"]'); if (el) el.focus(); } });
+    cq.addEventListener("input", function () { state.cq = cq.value; draw(); });
+    document.getElementById("c-all").addEventListener("click", function () {
+      var vis = visible();
+      var to = !vis.every(function (x) { return state.sel[x.id]; });
+      vis.forEach(function (x) { state.sel[x.id] = to; }); state.example = false; draw();
+    });
+    if ("IntersectionObserver" in window) {
+      barIO = new IntersectionObserver(function (en) {
+        en.forEach(function (x) { if (x.target === sheet) sheetIn = x.isIntersecting; });
+        setBarVis();
+      }, { threshold: 0.15 });
+      barIO.observe(sheet);
+    }
+    draw();
+  }
+
+  function services() {
+    return '<p class="x-eyebrow">서비스별 요금</p><h1 class="x-h1" style="font-size:clamp(28px,5vw,40px)">14개 구독, 나눠 내면 얼마일까요?</h1>' +
+      '<p class="x-sub">공식가와 나눠 내는 최저가를 나란히 봐요. 가격 기준일 2026-10-25.</p>' +
+      '<div class="x-search">' + I_SEARCH +
+      '<input type="search" id="s-q" placeholder="서비스 이름으로 찾기 (예: 넷플릭스)" aria-label="서비스 검색" /></div>' +
+      '<div class="x-list" id="s-list"></div><p class="x-disc" id="s-disc">' + DISC + '</p><div style="margin-top:12px">' + note(NOTE_SRC) + "</div>" +
+      next("내 구독만 골라 합쳐 볼까요?", "쓰는 것만 켜면 1년 절약액이 바로 보여요.", "#/calculator", "내 구독으로 계산하기");
+  }
+  function servicesBind() {
+    var q = document.getElementById("s-q"), list = document.getElementById("s-list"), disc_ = document.getElementById("s-disc");
+    q.value = state.q;
+    function draw() {
+      var t = state.q.trim().toLowerCase().replace(/\s/g, "");
+      var vis = S.filter(function (x) { return !t || (x.name + x.cat + x.id).toLowerCase().replace(/\s/g, "").indexOf(t) > -1; });
+      list.innerHTML = vis.length ? vis.map(function (x) {
+        return '<div class="x-srow"><a class="x-row" href="#/services/' + x.id + '">' + ini(x) + '<span class="x-row__body"><span class="x-row__name">' + x.name + '</span><br /><span class="x-row__meta">' + x.cat + ' · <s class="x-nw">공식 ' + won(x.o) + '</s><br /><span>' + basis(x) + '</span></span></span><span class="x-row__end"><span class="x-row__name">' + won(x.s) + '~</span><br /><span class="x-badge">' + rate(x) + "% 절약</span></span>" + I_CHEV + "</a>" + plink(x) + "</div>";
+      }).join("") : empty("찾는 서비스가 없어요. 다른 이름으로 검색해 보세요.", "덜냄이는 찾다가 잠들었어…");
+      hydrate(list);
+      disc_.hidden = !vis.length;
+    }
+    q.addEventListener("input", function () { state.q = q.value; draw(); });
+    draw();
+  }
+
+  function service(id) {
+    var x = byId(id);
+    if (!x) return notFound();
+    var d = DETAIL[id], plans = PLANS[id];
+    var h = back("#/services", "서비스별 요금") +
+      '<div class="x-dhead">' + ini(x, true) + '<div><p class="x-muted" style="margin:0">' + x.cat + '</p><h1 class="x-h1" style="font-size:clamp(26px,5vw,36px);margin:0">' + x.name + "</h1></div></div>" +
+      '<div class="x-two">' +
+      '<div class="x-card"><p class="x-muted" style="margin:0 0 4px">공식가 (피클플러스 표기)</p><p class="x-big" style="margin:0">' + won(x.o) + '</p><p class="x-muted" style="margin:6px 0 0"><b>' + basis(x) + "</b> · 월 · 2026-10-25 확인</p></div>" +
+      '<div class="x-card"><p class="x-muted" style="margin:0 0 4px">공동구독 최저 월 요금</p><p class="x-big x-big--pink" style="margin:0">' + won(x.s) + ' <span style="font-size:18px">~부터</span></p><p style="margin:6px 0 0"><span class="x-badge">' + rate(x) + "% 절약</span> <span class=\"x-muted\">월 " + won(x.o - x.s) + " 차이</span></p></div></div>";
+    var short = x.name.replace(/ \(.*\)/, "");
+    if (d && d.priceNote) h += '<div style="margin-top:12px">' + note(d.priceNote) + "</div>";
+    h += '<div style="margin-top:16px">' + coop(id === "chatgpt") + "</div>";
+    h += '<p class="x-p" style="margin:16px 0 0">' + short + ", 1년이면 최대 <b>" + won((x.o - x.s) * 12) + "</b> 덜 낼 수 있어요. 아래 주의할 점도 같이 보세요.</p>" +
+      plink(x, "x-plink--inline") + disc();
+    var fit = d && d.fit ? '<div class="x-card x-fit"><p class="x-h3">누구에게 맞나요?</p><ul class="x-ul">' + d.fit.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul></div>" : "";
+    if (plans) {
+      h += '<section class="x-sec" style="margin-top:40px"><h2 class="x-h2">공식 요금제</h2><p class="x-muted" style="margin:0 0 16px">토르킷 정리 · 2026-05-11 업데이트</p>' +
+        '<div class="x-tbl-wrap"><table class="x-tbl"><thead><tr><th scope="col">요금제</th><th scope="col" style="text-align:right">월 요금</th></tr></thead><tbody>' +
+        plans.map(function (p) { return '<tr><th scope="row">' + p[0] + (p[2] ? ' <span class="x-muted">(' + p[2] + ")</span>" : "") + '</th><td class="x-num">' + (p[2] ? "약 " : "") + won(p[1]) + "</td></tr>"; }).join("") +
+        "</tbody></table></div>" + fit + "</section>";
+    }
+    if (d) {
+      h += '<section class="x-sec" style="margin-top:40px"><h2 class="x-h2">다른 아끼는 방법</h2><div class="x-card" style="margin-top:16px"><ul class="x-ul">' + d.tips.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul></div></section>";
+    }
+    h += '<section class="x-sec" style="margin-top:40px"><h2 class="x-h2">주의할 점</h2><div style="display:grid;gap:8px;margin-top:16px">' +
+      (d ? d.warn.map(function (w) { return note(w, true); }).join("") : note("원 서비스 약관은 대부분 계정 공유를 제한해요. 공동구독 전 약관과 계정 정지 위험을 확인하세요.", true)) +
+      note("공동구독가는 '~부터' 최저가예요. 인원·기간에 따라 달라요.") + note(NOTE_SRC) + "</div>" +
+      '<div class="x-btns" style="margin-top:14px"><a class="x-btn x-btn--sec x-btn--sm" href="#/checklist">가입 전 체크리스트 1분 확인 →</a></div></section>';
+    h += '<section class="x-sec" style="margin-top:40px"><h2 class="x-h2">이렇게 시작해요 3단계</h2><ol class="x-mini">' +
+      "<li><b>1</b><span>아래 버튼으로 " + short + " 자리 보기</span></li><li><b>2</b><span>환불·해지 약관 확인</span></li><li><b>3</b><span>가입하고 다음 결제일 메모</span></li></ol>" +
+      '<div class="x-cta"><p class="x-h3">주의할 점까지 봤다면</p>' +
+      '<p class="x-p">' + short + " 공동구독은 월 " + won(x.s) + "~부터예요. 남은 자리부터 편하게 확인해 보세요.</p>" +
+      pkBlock("이 서비스 공동구독 자리 확인하기", null, id) +
+      '<div class="x-tlinks"><a class="x-tlink" href="#/calculator">내 구독 전체 계산하기</a>' +
+      (d && d.guide ? '<a class="x-tlink" href="#/guides/' + d.guide + '">관련 가이드 읽기</a>' : "") + "</div></div></section>";
+    return h;
+  }
+
+  function platforms() {
+    var unk = '<span class="x-unk">약관 확인 필요</span>';
+    var P = [
+      { n: "피클플러스", c: "#C2405E", i: "P", pick: true, t: "국내 최대 공동구독 플랫폼 표방", d: ["서비스별 공개 최저가를 바로 확인할 수 있어요 (덜냄 가격 기준)", "즉시매칭·선착순 방식으로 표기", "서비스마다 초대형·파티형 등 방식이 달라요", "환불·보상은 약관 확인 필요"] },
+      { n: "링키드", c: "#6B55E8", i: "L", t: "파티원 모집형", d: ["파티장이 파티원을 모으는 방식", "친구초대 포인트 제공"] },
+      { n: "서브쉐어", c: "#0D9E6E", i: "S", url: "https://www.subshare.co.kr/", t: "신규 플랫폼", d: ["보증보험을 강조해요", "세부 보상 조건은 약관에서 확인하세요"] },
+      { n: "겜스고", c: "#7C5C4E", i: "G", no: true, t: "해외 계정 판매형 상품 다수", d: ["원 서비스 약관과 충돌할 가능성이 커요", "덜냄은 추천하지 않아요"] }
+    ];
+    var rows = [
+      ["공유 방식", ["즉시매칭·선착순", "파티원 모집형", unk, "해외 계정 판매형"]],
+      ["환불 조건", [unk, unk, unk, unk]],
+      ["이용정지 시 보상", [unk, unk, '보증보험 강조<br /><span class="x-unk">세부 조건은 약관 확인 필요</span>', unk]],
+      ["계정 방식", ["서비스마다 다름<br /><span class=\"x-unk\">초대형·파티형 등</span>", unk, unk, "해외 계정<br /><span class=\"x-unk\">약관 충돌 가능성 큼</span>"]]
+    ];
+    var cards = P.map(function (p, pi) {
+      return '<div class="x-flip" data-flip><div class="x-flip__in"><div class="x-card x-plat x-flip__front' + (p.no ? " x-plat--no" : "") + (p.pick ? " x-plat--pick" : "") + '"><div class="x-plat__top"><span class="x-ini" aria-hidden="true" style="background:' + p.c + '">' + p.i + '</span><div><p class="x-h3" style="margin:0">' + p.n + "</p>" +
+        (p.no ? '<span class="x-badge x-badge--gray">비추천</span>' : p.pick ? '<span class="x-badge">덜냄 가격 기준 플랫폼</span>' : '<span class="x-muted">' + p.t + "</span>") + "</div></div>" +
+        (p.no || p.pick ? '<p class="x-muted" style="margin:0">' + p.t + "</p>" : "") +
+        '<ul class="x-ul">' + p.d.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul>" +
+        '<div class="x-tlinks">' + (p.pick ? pk('피클플러스 최저가&nbsp;<span class="x-nw">보기 ↗</span>', "x-tlink") : "") + '<button type="button" class="x-tlink" data-flip-btn aria-expanded="false">확인할 것 보기</button>' +
+        (p.url ? '<a class="x-tlink" href="' + p.url + '" target="_blank" rel="noopener">' + p.n + '&nbsp;<span class="x-nw">가기 ↗</span></a>' : "") + "</div>" + (p.pick ? disc() : "") + "</div>" +
+        '<div class="x-card x-plat x-flip__back" inert><p class="x-h3" style="margin:0">' + p.n + " · 확인할 것</p>" +
+        '<ul class="x-ul">' + rows.map(function (r) { return "<li><b>" + r[0] + "</b>: " + r[1][pi].replace(/<br \/>/g, " · ") + "</li>"; }).join("") + "</ul>" +
+        '<div class="x-tlinks"><button type="button" class="x-tlink" data-flip-btn>← 앞면으로</button></div></div></div></div>';
+    }).join("");
+    return '<p class="x-eyebrow">플랫폼 비교</p><h1 class="x-h1" style="font-size:clamp(28px,5vw,40px)">공동구독 플랫폼, 방식이 달라요</h1>' +
+      '<p class="x-sub">가격보다 먼저 공유 방식과 보상 조건을 보세요.</p>' +
+      '<section class="x-card x-safe" aria-labelledby="p-safe"><div class="x-mhead"><div><p class="x-h3" id="p-safe">피클플러스, 안전한가요?</p><p class="x-p">보장된 안전은 없어요. 덜냄이 확인한 것과 못 한 것을 나눠 적었어요.</p></div>' +
+      '<figure class="x-mhead__fig" style="width:120px;margin-bottom:8px">' + M("hug") + '</figure></div><div class="x-two">' +
+      '<div><p>확인된 것</p><ul class="x-ul">' +
+      '<li>서비스별 공동구독 최저 월 요금을 공개해요<span class="x-src">피클플러스 · 2026-10-25 확인</span></li>' +
+      '<li>즉시매칭·선착순 방식으로 표기해요<span class="x-src">피클플러스 표기</span></li>' +
+      '<li>서비스마다 초대형·파티형 등 방식이 달라요<span class="x-src">피클플러스 표기</span></li>' +
+      '<li>원 서비스 약관을 어기면 이용이 제한될 수 있어요<span class="x-src">한국소비자원 · 2025-02</span></li></ul></div>' +
+      '<div class="x-safe__no"><p>확인 안 된 것</p><ul class="x-ul">' +
+      '<li>환불 조건<span class="x-src">약관 확인 필요</span></li>' +
+      '<li>이용정지 때 남은 기간 보상<span class="x-src">약관 확인 필요</span></li>' +
+      '<li>해지 방법<span class="x-src">약관 확인 필요</span></li></ul></div></div>' +
+      '<div class="x-tlinks"><a class="x-tlink" href="#/checklist">가입 전 체크리스트 1분 확인 →</a></div></section>' +
+      '<div class="x-grid" id="x-plats">' + cards + "</div>" +
+      '<section class="x-sec"><h2 class="x-h2">한눈에 비교</h2><p class="x-muted" style="margin:0 0 16px">확인되지 않은 항목은 숫자를 지어내지 않고 “약관 확인 필요”로 적었어요.</p>' +
+      '<div class="x-tbl-wrap"><table class="x-tbl x-tbl--wide"><thead><tr><th scope="col">항목</th>' + P.map(function (p) { return '<th scope="col">' + p.n + "</th>"; }).join("") + "</tr></thead><tbody>" +
+      rows.map(function (r) { return '<tr><th scope="row">' + r[0] + "</th>" + r[1].map(function (c, ci) { return '<td data-label="' + P[ci].n + '"><span>' + c + "</span></td>"; }).join("") + "</tr>"; }).join("") +
+      "</tbody></table></div>" +
+      '<div style="display:grid;gap:8px;margin-top:16px">' + note("가입 전 각 플랫폼의 환불·보상 약관을 직접 확인하세요.", true) + "</div>" +
+      '<div class="x-cta x-cta--pick"><p style="margin:0 0 8px"><span class="x-badge">덜냄 가격 기준 플랫폼</span></p><p class="x-h3">덜냄 가격 기준은 피클플러스예요</p><p class="x-p">서비스별 공개 최저가를 바로 확인할 수 있어요. 환불·보상은 가입 전 약관에서 확인하세요.</p>' +
+      pkBlock("내 서비스 최저가 보기") + '<div class="x-tlinks"><a class="x-tlink" href="#/checklist">가입 전 체크리스트 먼저 보기</a></div></div></section>';
+  }
+
+  var CHECKS = [
+    ["원 서비스 약관과 계정 정지 위험", "넷플릭스 등은 원칙적으로 같은 가구 내 공유만 허용해요."],
+    ["환불 불가 시점", "언제부터 환불이 안 되는지 결제 전에 확인해요."],
+    ["이용정지·해지 시 남은 기간 보상", "계정이 막히면 남은 기간을 돌려받을 수 있는지 봐요."],
+    ["내 계정 초대 방식인지, 남의 계정 방식인지", "남의 계정이면 개인정보·시청기록이 노출될 수 있어요."],
+    ["자동결제 해지 방법", "해지 버튼이 어디 있는지, 다음 결제일이 언제인지 알아둬요."]
+  ];
+  function checklist() {
+    return '<p class="x-eyebrow">가입 전 체크</p><h1 class="x-h1" style="font-size:clamp(28px,5vw,40px)">가입 전 체크리스트 5가지만 확인하세요</h1>' +
+      '<p class="x-sub">1분이면 끝나요. 확인한 항목을 눌러 체크하세요. 저장되지 않아요.</p>' +
+      '<div class="x-prog" aria-live="polite"><div class="x-prog__top"><span>확인 진행</span><span id="k-n"></span></div><div class="x-prog__bar"><i id="k-bar"></i></div></div>' +
+      '<div class="x-tiles" id="k-list">' + CHECKS.map(function (c, k) {
+        return '<label class="x-tile"><input type="checkbox" data-k="' + k + '"' + (state.checks[k] ? " checked" : "") + ' aria-label="' + c[0] + '" />' +
+          '<span class="x-card"><span class="x-step__n" style="margin:0 0 4px">' + (k + 1) + '</span><span class="x-tile__ok" aria-hidden="true">' + I_CHECK + '</span><span class="x-check__t">' + c[0] + '</span><span class="x-check__d">' + c[1] + '</span><span class="x-tile__hint" data-on="확인 완료 · 다시 누르면 취소">눌러서 확인</span></span></label>';
+      }).join("") + "</div>" +
+      '<div id="k-done" style="margin-top:12px"></div>' +
+      '<div class="x-callout"><p class="x-muted" style="margin:0 0 4px;font-weight:800;color:var(--x-rose-d)">한국소비자원 · 2025년 2월 발표</p><p><b>계정공유 플랫폼 관련 피해가 있었어요.</b></p>' +
+      '<div class="x-num-row"><div><span>상담</span><strong>174건</strong></div><div><span>피해구제 신청</span><strong>34건</strong></div></div>' +
+      "<p>이용정지 후 환급 지연 등의 피해가 있었어요.</p></div>" +
+      '<div class="x-cta x-cta--dark"><p class="x-h3">체크 다 했다면 →</p><p class="x-p">남은 자리와 최저가부터 보고, 약관은 가입 화면에서 한 번 더 확인하세요.</p>' +
+      pkBlock("공동구독 자리 확인하기") +
+      '<div class="x-tlinks"><a class="x-tlink" href="#/platforms">플랫폼 비교 보기</a><a class="x-tlink" href="#/calculator">계산기로 돌아가기</a></div></div>';
+  }
+  function checklistBind() {
+    var list = document.getElementById("k-list");
+    function upd() {
+      var n = 0; for (var k = 0; k < 5; k++) if (state.checks[k]) n++;
+      document.getElementById("k-n").innerHTML = "<b>" + n + "</b>/5 확인";
+      document.getElementById("k-bar").style.width = n * 20 + "%";
+      [].forEach.call(list.querySelectorAll(".x-tile"), function (t) {
+        var c = t.querySelector("input").checked, h = t.querySelector(".x-tile__hint");
+        h.textContent = c ? h.getAttribute("data-on") : "눌러서 확인";
+      });
+      document.getElementById("k-done").innerHTML = n === 5 ? note("다 확인했어요. 이제 아래에서 시작해 보세요. 덜냄이도 안심했어.") : "";
+    }
+    list.addEventListener("change", function (e) {
+      var k = e.target.getAttribute("data-k");
+      if (k !== null) { state.checks[k] = e.target.checked; upd(); X3D.bump(e.target.parentNode.querySelector(".x-card"), "x-squish"); }
+    });
+    upd();
+  }
+  function guides() {
+    return '<p class="x-eyebrow">가이드</p><h1 class="x-h1" style="font-size:clamp(28px,5vw,40px)">덜 내는 방법, 짧게 정리했어요</h1>' +
+      '<p class="x-sub">숫자와 출처를 같이 적었어요.</p><div class="x-grid x-grid--3">' + GUIDES.map(guideCard).join("") + "</div>" +
+      next("읽었다면, 내 구독에 대입해 봐요", "쓰는 구독만 켜면 1년 절약액이 바로 보여요.", "#/calculator", "내 구독으로 계산하기");
+  }
+
+  var ARTICLES = {
+    1: '<p>넷플릭스 프리미엄 공식가는 월 <b>17,000원</b>이에요. 줄이는 방법은 크게 세 가지예요.</p>' +
+      "<h2>1. 광고형 요금제로 바꾸기</h2><p>광고형 스탠다드는 월 <b>5,500원</b>이에요(토르킷 정리, 2026-05-11). 광고가 괜찮다면 가장 확실하고 안전하게 줄이는 방법이에요.</p>" +
+      '<div class="x-hl"><p>요금제 한눈에: 광고형 5,500원 · 베이직 9,500원 · 스탠다드 13,500원 · 프리미엄 17,000원</p></div>' +
+      "<h2>2. 공동구독 — 싸지만 약관 위험이 있어요</h2><p>피클플러스 기준 공동구독 최저 월 요금은 <b>9,490원~부터</b>예요(2026-10-25). 다만 넷플릭스 약관은 원칙적으로 <b>같은 가구 내 공유만</b> 허용해요. 가구 외 공유는 계정 제한으로 이어질 수 있어요.</p>" +
+      "<h2>3. 통신사·카드 결합 확인</h2><p>쓰고 있는 통신사 요금제나 카드에 넷플릭스 할인·포함 혜택이 있는지 먼저 확인해 보세요. 이미 내고 있는 돈 안에 들어 있을 수도 있어요.</p>" +
+      '<div class="x-hl"><p>' + NOTE_SRC + "</p></div>",
+    2: "<p>유튜브 프리미엄을 싸게 쓰는 방법은 가족 요금과 공동구독, 두 가지가 많이 비교돼요.</p>" +
+      "<h2>개인 요금</h2><p>토르킷 정리(2026-05-11) 기준 개인 요금은 월 <b>14,900원</b>이에요.</p>" +
+      "<h2>가족 요금: 5명이면 1인 약 4,780원</h2><p>가족 요금은 월 <b>23,900원</b>, 최대 5인이에요. 가족 5명이 나누면 1인당 약 <b>4,780원</b>이에요. 같이 사는 가족이라면 가장 저렴하고 약관 걱정도 적어요.</p>" +
+      "<h2>공동구독: 10,900원~부터</h2><p>피클플러스 기준 공동구독 최저 월 요금은 <b>10,900원~부터</b>예요(2026-10-25). 가족 요금을 5명이 나누는 것보다 비싸고, 원 서비스 약관과 충돌할 수 있어요.</p>" +
+      "<h2>왜 공식가가 19,500원으로 보이나요?</h2><p>피클플러스는 공식가를 <b>19,500원</b>으로 표기하고, 토르킷은 개인 요금을 <b>14,900원</b>으로 정리했어요. 출처마다 기준 요금제·시점이 달라서 생기는 차이예요. 결제 전에 유튜브 공식 페이지에서 지금 요금을 확인하세요.</p>" +
+      '<div class="x-hl"><p>정리: 같이 사는 가족이 있다면 가족 요금(1인 약 4,780원), 혼자라면 개인 요금과 공동구독(~10,900원부터)의 위험을 같이 따져보세요.</p></div>',
+    3: "<p>새는 구독은 대부분 결제 내역에 숨어 있어요. 아래 네 곳만 확인해 보세요.</p>" +
+      "<h2>확인할 곳 4가지</h2><ol><li><b>카드사 정기결제 내역</b> — 카드 앱의 정기결제·자동결제 메뉴</li><li><b>앱스토어 / 구글플레이 구독 메뉴</b> — 앱으로 결제한 구독이 모여 있어요</li><li><b>통신사 부가서비스</b> — 휴대폰 요금에 붙은 서비스</li><li><b>네이버페이·카카오페이 결제내역</b> — 간편결제로 가입한 구독</li></ol>" +
+      "<h2>무엇부터 해지할까요?</h2><p><b>한 달 동안 한 번도 안 연 서비스</b>부터 해지하세요. 필요해지면 그때 다시 가입해도 늦지 않아요.</p>" +
+      '<div class="x-hl"><p>다 찾았다면 <a href="#/calculator" style="color:var(--x-rose-d);font-weight:800">계산기</a>에서 남길 구독만 켜고 얼마나 줄었는지 확인해 보세요.</p></div>'
+  };
+  function article(id) {
+    var g = GUIDES.filter(function (x) { return String(x.id) === String(id); })[0];
+    if (!g) return notFound();
+    var others = GUIDES.filter(function (x) { return x !== g; });
+    return back("#/guides", "가이드") + '<article class="x-article"><span class="x-guide-tag">' + g.tag + '</span><h1 class="x-h1" style="font-size:clamp(26px,5vw,36px)">' + g.title + '</h1><p class="x-meta">덜냄 · 가격 기준일 2026-10-25 · 읽는 시간 ' + g.read + "</p>" + ARTICLES[g.id] + "</article>" +
+      '<section class="x-sec"><h2 class="x-h2" style="font-size:21px">다른 가이드</h2><div class="x-grid x-grid--3" style="margin-top:16px">' + others.map(guideCard).join("") + "</div></section>" +
+      next("내 구독은 얼마나 아낄 수 있을까요?", "쓰는 구독만 켜면 30초면 나와요.", "#/calculator", "내 구독으로 계산하기",
+        g.svc ? '<div class="x-tlinks"><a class="x-tlink" href="#/services/' + g.svc + '">' + byId(g.svc).name + " 요금 자세히 보기</a></div>" : "");
+  }
+
+  function about() {
+    return '<p class="x-eyebrow">소개</p><h1 class="x-h1" style="font-size:clamp(28px,5vw,40px)">덜냄은 구독료를<br />정직하게 비교하는 곳이에요</h1>' +
+      '<p class="x-sub">싸게만 보여주지 않고, 위험도 같이 보여드려요. 마스코트 덜냄이는 귀찮아도 아끼는 건 잘해요.</p>' +
+      '<div class="x-steps">' +
+      '<div class="x-card"><span class="x-step__n">1</span><p class="x-h3">기준일·출처 표시</p><p class="x-p" style="margin:0">모든 가격에 언제, 어디서 확인했는지 적어요.</p></div>' +
+      '<div class="x-card"><span class="x-step__n">2</span><p class="x-h3">위험도 같이 보여주기</p><p class="x-p" style="margin:0">약관·환불·정지 위험을 가격 옆에 둬요.</p></div>' +
+      '<div class="x-card"><span class="x-step__n">3</span><p class="x-h3">과장 금지</p><p class="x-p" style="margin:0">모르는 건 모른다고, “약관 확인 필요”라고 적어요.</p></div></div>' +
+      '<section class="x-sec" id="sources"><h2 class="x-h2">출처</h2><div class="x-list" style="margin-top:16px">' +
+      '<a class="x-row" href="' + PICKLE_URL + '" target="_blank" rel="sponsored noopener"><span class="x-row__body"><span class="x-row__name">피클플러스</span><br /><span class="x-row__meta">공식가 표기·공동구독 최저 월 요금 · 2026-10-25 확인</span></span>' + I_CHEV + "</a>" +
+      '<a class="x-row" href="https://thorkit.kr/tables/subscription-services-2026/" target="_blank" rel="noopener"><span class="x-row__body"><span class="x-row__name">토르킷 구독 서비스 요금 정리</span><br /><span class="x-row__meta">공식 단일 요금제 참고 · 2026-05-11 업데이트</span></span>' + I_CHEV + "</a>" +
+      '<div class="x-row" style="cursor:default"><span class="x-row__body"><span class="x-row__name">한국소비자원 발표</span><br /><span class="x-row__meta">계정공유 플랫폼 소비자 피해 · 2025-02</span></span></div>' +
+      '</div><div style="margin-top:12px">' + note(NOTE_SRC) + "</div></section>" +
+      '<section class="x-sec" id="operator"><h2 class="x-h2">운영자 정보</h2><div class="x-list" style="margin-top:16px">' +
+      opLines().map(function (r) { return '<div class="x-row" style="cursor:default"><span class="x-row__body"><span class="x-row__meta">' + r[0] + '</span><br /><span class="x-op-v">' + r[1] + "</span></span></div>"; }).join("") +
+      "</div></section>" +
+      '<section class="x-sec" id="affiliate"><h2 class="x-h2">제휴 안내</h2><div class="x-card" style="margin-top:16px"><p class="x-p">피클플러스로 가는 링크는 추천 링크예요. ' + DISC + ' 가격·순위에는 영향을 주지 않아요.</p><p class="x-muted" style="margin:0">이 정보는 참고용이며 가격은 바뀔 수 있어요.</p></div></section>' +
+      next("직접 계산해 볼까요?", "쓰는 구독만 켜면 1년 절약액이 바로 보여요.", "#/calculator", "내 구독으로 계산하기");
+  }
+  function privacy() {
+    return '<p class="x-eyebrow">개인정보처리방침</p><h1 class="x-h1" style="font-size:clamp(28px,5vw,40px)">개인정보, 받지 않아요</h1>' +
+      '<p class="x-sub">베타 기간 기준의 간단한 안내예요.</p>' +
+      '<div class="x-list">' +
+      '<div class="x-row" style="cursor:default"><span class="x-badge x-badge--green">없음</span><span class="x-row__body"><span class="x-row__name">회원가입·개인정보 수집</span><br /><span class="x-row__meta">이름, 연락처, 결제 정보를 받지 않아요.</span></span></div>' +
+      '<div class="x-row" style="cursor:default"><span class="x-badge x-badge--green">없음</span><span class="x-row__body"><span class="x-row__name">계산기 입력 저장</span><br /><span class="x-row__meta">선택한 구독은 이 화면에서만 쓰이고 저장하지 않아요. 쿠키도 쓰지 않아요.</span></span></div>' +
+      '<div class="x-row" style="cursor:default"><span class="x-badge x-badge--gray">예정</span><span class="x-row__body"><span class="x-row__name">방문 통계 도구</span><br /><span class="x-row__meta">추후 도입하면 이 페이지에서 미리 알려드릴게요.</span></span></div>' +
+      '</div><p class="x-muted" style="margin-top:16px">시행일: 2026-10-25 (베타)</p>' +
+      next("받는 것 없이 계산만 해요", "쓰는 구독만 켜면 1년 절약액이 바로 보여요.", "#/calculator", "내 구독으로 계산하기");
+  }
+  function notFound() {
+    return '<div class="x-empty x-404">' + M("sleep", "", ALT.sleep) + '<h1 class="x-h2">페이지를 찾을 수 없어요</h1><p class="x-p">주소를 다시 확인해 주세요. 덜냄이는 여기서 잠들어 버렸어요… zZ</p><a class="x-btn x-btn--pri" href="#/">홈으로</a></div>';
+  }
+
+  /* ---------- router ---------- */
+  var app = document.getElementById("app"), navEl = document.getElementById("x-nav"), drawer = document.getElementById("x-drawer"), burger = document.getElementById("x-burger");
+  var links = NAV.map(function (n) { return '<a href="' + n[0] + '" data-r="' + n[0] + '">' + n[1] + "</a>"; }).join("");
+  navEl.innerHTML = links; drawer.innerHTML = links;
+  document.getElementById("x-op").innerHTML = opLines().map(function (r) { return "<p>" + r[0] + ": " + r[1] + "</p>"; }).join("");
+  function setDrawer(open) { drawer.classList.toggle("is-open", open); burger.setAttribute("aria-expanded", open); burger.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기"); }
+  burger.addEventListener("click", function () { setDrawer(!drawer.classList.contains("is-open")); });
+
+  var TITLES = { calculator: "계산기", services: "서비스별 요금", platforms: "플랫폼 비교", checklist: "가입 전 체크", guides: "가이드", about: "소개", privacy: "개인정보처리방침" };
+  function route() {
+    var raw = (location.hash || "#/").replace(/^#/, "");
+    var qi = raw.indexOf("?"), query = qi > -1 ? raw.slice(qi + 1) : "", path = qi > -1 ? raw.slice(0, qi) : raw;
+    var parts = path.split("/").filter(Boolean), top = parts[0] || "", html, bind, title, lost = false;
+    if (!top) { html = home(); bind = homeBind; }
+    else if (top === "calculator") { html = calculator(); bind = calcBind; }
+    else if (top === "services" && parts[1]) { html = service(parts[1]); var sx = byId(parts[1]); title = sx ? sx.name + " 요금" : null; lost = !sx; }
+    else if (top === "services") { html = services(); bind = servicesBind; }
+    else if (top === "platforms") { html = platforms(); }
+    else if (top === "checklist") { html = checklist(); bind = checklistBind; }
+    else if (top === "guides" && parts[1]) { html = article(parts[1]); var g = GUIDES.filter(function (x) { return String(x.id) === parts[1]; })[0]; title = g ? g.title : null; lost = !g; }
+    else if (top === "guides") { html = guides(); }
+    else if (top === "about") { html = about(); }
+    else if (top === "privacy") { html = privacy(); }
+    else { html = notFound(); lost = true; }
+    X3D.cleanup();
+    if (barIO) { barIO.disconnect(); barIO = null; }
+    var xbar = document.getElementById("x-bar"); xbar.hidden = true; xbar.innerHTML = ""; document.body.classList.remove("has-bar");
+    document.body.classList.toggle("is-404", lost);
+    app.innerHTML = html;
+    hydrate(app);
+    if (bind) bind();
+    X3D.after(app);
+    title = title || TITLES[top];
+    document.title = title ? title + " | 덜냄 구독 다이어트 계산기" : "덜냄 | 구독 다이어트 계산기 — 넷플릭스·유튜브·티빙 구독료 비교";
+    var active = "#/" + top;
+    [].forEach.call(document.querySelectorAll("[data-r]"), function (a) {
+      var on = a.getAttribute("data-r") === active || (active === "#/" && a.getAttribute("data-r") === "#/");
+      a.classList.toggle("is-on", on);
+      if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    setDrawer(false);
+    var to = /(?:^|&)to=([\w-]+)/.exec(query), target = to && document.getElementById(to[1]);
+    if (target) { setTimeout(function () { target.scrollIntoView({ block: "start" }); }, 0); }
+    else { window.scrollTo({ top: 0, left: 0, behavior: "instant" }); }
+    app.focus({ preventScroll: true });
+  }
+  app.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("[data-jump]"), t = a && document.getElementById(a.getAttribute("data-jump"));
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: X3D.reduce ? "auto" : "smooth", block: "start" });
+    var f = t.querySelector("button"); if (f) f.focus({ preventScroll: true });
+  });
+  window.addEventListener("hashchange", route);
+  route();
+})();
+    </script>
+  </body>
+</html>

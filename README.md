@@ -5,6 +5,7 @@
 - 사이트: https://heymybiz.github.io/deolnaem/
 
 ## 가이드
+- [넷플릭스 광고형 vs 스탠다드 차이](https://heymybiz.github.io/deolnaem/guide/netflix-ads-vs-standard/)
 - [웨이브 요금제 비교 2026](https://heymybiz.github.io/deolnaem/guide/wavve-price/)
 - [디즈니플러스 요금 인상 정리](https://heymybiz.github.io/deolnaem/guide/disneyplus-price/)
 - [ChatGPT Plus 요금 아끼는 법](https://heymybiz.github.io/deolnaem/guide/chatgpt-plus/)
